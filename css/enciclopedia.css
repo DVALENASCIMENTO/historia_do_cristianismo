@@ -1,0 +1,514 @@
+/* ========================================
+   MINISTÉRIO ATALAIA
+   Enciclopédia — História do Cristianismo
+   ======================================== */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --preto: #111111;
+    --preto-suave: #1b1b1b;
+    --dourado: #c9a44c;
+    --dourado-claro: #e6cc83;
+    --branco: #ffffff;
+    --cinza: #666666;
+    --cinza-claro: #f4f4f4;
+    --borda: #e4e0d5;
+    --verde: #315d43;
+    --sombra: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f6f2;
+    color: var(--preto);
+    line-height: 1.6;
+}
+
+/* LINKS */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--dourado);
+}
+
+/* CABEÇALHO */
+header {
+    background: var(--preto);
+    color: var(--branco);
+    padding: 22px 6%;
+    border-bottom: 4px solid var(--dourado);
+}
+
+header h1 {
+    color: var(--dourado);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.25;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #dddddd;
+    font-size: 0.95rem;
+}
+
+/* NAVEGAÇÃO */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 6%;
+    background: #242424;
+}
+
+nav a {
+    display: inline-block;
+    color: var(--branco);
+    padding: 8px 13px;
+    border-radius: 5px;
+    font-size: 0.92rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+    background: var(--dourado);
+    color: var(--preto);
+}
+
+/* CONTEÚDO PRINCIPAL */
+main {
+    width: min(1200px, 92%);
+    margin: 30px auto;
+}
+
+/* TÍTULOS */
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+p {
+    margin-bottom: 12px;
+}
+
+section {
+    margin-bottom: 35px;
+}
+
+section > h2 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--dourado);
+}
+
+/* APRESENTAÇÃO */
+.introducao,
+.apresentacao,
+.hero {
+    background: var(--branco);
+    padding: 28px;
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+    margin-bottom: 25px;
+}
+
+.introducao p:last-child,
+.apresentacao p:last-child,
+.hero p:last-child {
+    margin-bottom: 0;
+}
+
+/* BUSCA E FILTROS */
+.filtros,
+.filtros-enciclopedia,
+.barra-pesquisa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0 25px;
+}
+
+input[type="search"],
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #d4d0c5;
+    border-radius: 7px;
+    background: var(--branco);
+    color: var(--preto);
+    font: inherit;
+    outline: none;
+}
+
+input[type="search"]:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 3px rgba(201, 164, 76, 0.17);
+}
+
+.filtros input,
+.filtros-enciclopedia input,
+.barra-pesquisa input {
+    flex: 1 1 260px;
+}
+
+.filtros select,
+.filtros-enciclopedia select {
+    flex: 0 1 230px;
+}
+
+/* LISTA DE CATEGORIAS */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 22px 0;
+}
+
+.categoria {
+    display: block;
+    padding: 18px;
+    background: var(--preto-suave);
+    color: var(--branco);
+    border-radius: 8px;
+    border-left: 4px solid var(--dourado);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.categoria:hover {
+    color: var(--branco);
+    background: #303030;
+    transform: translateY(-3px);
+}
+
+.categoria h3 {
+    color: var(--dourado-claro);
+}
+
+/* GRADE DE VERBETES */
+.grade,
+.grade-verbetes,
+.lista-verbetes,
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* CARTÃO INDIVIDUAL */
+.card,
+.verbete,
+.card-verbete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 22px;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover,
+.verbete:hover,
+.card-verbete:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card h3,
+.verbete h3,
+.card-verbete h3 {
+    color: #604916;
+    margin-bottom: 10px;
+}
+
+.card p,
+.verbete p,
+.card-verbete p {
+    color: #4f4f4f;
+    font-size: 0.95rem;
+}
+
+/* ETIQUETAS */
+.etiqueta,
+.categoria-tag,
+.tag {
+    display: inline-block;
+    padding: 4px 9px;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    background: #f5ecd5;
+    color: #634c18;
+    font-size: 0.78rem;
+    font-weight: bold;
+}
+
+/* BOTÕES E LINKS DE AÇÃO */
+button,
+.botao,
+.btn,
+.card a,
+.verbete a,
+.card-verbete a {
+    font-family: inherit;
+}
+
+button,
+.botao,
+.btn {
+    display: inline-block;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 6px;
+    background: var(--dourado);
+    color: var(--preto);
+    font-size: 0.92rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover,
+.botao:hover,
+.btn:hover {
+    background: var(--dourado-claro);
+    color: var(--preto);
+    transform: translateY(-1px);
+}
+
+.card a,
+.verbete a,
+.card-verbete a {
+    display: inline-block;
+    margin-top: auto;
+    padding: 9px 14px;
+    border-radius: 6px;
+    background: var(--preto-suave);
+    color: var(--branco);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.card a:hover,
+.verbete a:hover,
+.card-verbete a:hover {
+    background: var(--dourado);
+    color: var(--preto);
+}
+
+/* ÁREA DE LEITURA DO VERBETE */
+.conteudo-verbete,
+.artigo,
+.pagina-verbete {
+    padding: clamp(20px, 4vw, 40px);
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+}
+
+.conteudo-verbete h2,
+.artigo h2,
+.pagina-verbete h2 {
+    margin-top: 25px;
+    color: #604916;
+}
+
+.conteudo-verbete h2:first-child,
+.artigo h2:first-child,
+.pagina-verbete h2:first-child {
+    margin-top: 0;
+}
+
+.conteudo-verbete ul,
+.conteudo-verbete ol,
+.artigo ul,
+.artigo ol,
+.pagina-verbete ul,
+.pagina-verbete ol {
+    padding-left: 25px;
+    margin-bottom: 18px;
+}
+
+.conteudo-verbete li,
+.artigo li,
+.pagina-verbete li {
+    margin-bottom: 7px;
+}
+
+/* REFERÊNCIAS E CITAÇÕES */
+.referencia,
+.referencias,
+.fontes {
+    margin-top: 25px;
+    padding: 18px;
+    background: #f8f4e9;
+    border-left: 4px solid var(--dourado);
+    border-radius: 5px;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background: #f5f2e9;
+    border-left: 4px solid var(--dourado);
+    font-style: italic;
+}
+
+/* NAVEGAÇÃO ENTRE PÁGINAS */
+.voltar,
+.navegacao-paginas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.voltar a,
+.navegacao-paginas a {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    background: var(--preto-suave);
+    color: var(--branco);
+}
+
+.voltar a:hover,
+.navegacao-paginas a:hover {
+    background: var(--dourado);
+    color: var(--preto);
+}
+
+/* MENSAGENS */
+.mensagem-vazia,
+.sem-resultados {
+    grid-column: 1 / -1;
+    padding: 25px;
+    text-align: center;
+    background: var(--branco);
+    border: 1px dashed #c8c1b0;
+    border-radius: 8px;
+    color: var(--cinza);
+}
+
+/* RODAPÉ */
+footer {
+    margin-top: 45px;
+    padding: 25px 6%;
+    background: var(--preto);
+    color: #dddddd;
+    text-align: center;
+    border-top: 3px solid var(--dourado);
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+footer strong {
+    color: var(--dourado-claro);
+}
+
+/* ELEMENTOS DE ACESSIBILIDADE */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #94711f;
+    outline-offset: 3px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 700px) {
+    header {
+        padding: 20px 5%;
+    }
+
+    nav {
+        padding: 12px 5%;
+        gap: 6px;
+    }
+
+    nav a {
+        padding: 8px 10px;
+        font-size: 0.86rem;
+    }
+
+    main {
+        width: 92%;
+        margin: 22px auto;
+    }
+
+    .introducao,
+    .apresentacao,
+    .hero {
+        padding: 20px;
+    }
+
+    .grade,
+    .grade-verbetes,
+    .lista-verbetes,
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .categorias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card,
+    .verbete,
+    .card-verbete {
+        padding: 18px;
+    }
+
+    .filtros,
+    .filtros-enciclopedia,
+    .barra-pesquisa {
+        flex-direction: column;
+    }
+
+    .filtros select,
+    .filtros-enciclopedia select {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .categorias {
+        grid-template-columns: 1fr;
+    }
+}

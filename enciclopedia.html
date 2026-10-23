@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Enciclopédia de História do Cristianismo do Ministério Atalaia. Consulte páginas individuais sobre personagens, acontecimentos, concílios, doutrinas e movimentos cristãos.">
+
+    <title>Enciclopédia de História do Cristianismo | Ministério Atalaia</title>
+
+    <link rel="stylesheet" href="css/enciclopedia.css">
+
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header class="cabecalho">
+
+        <div class="identidade">
+
+            <p class="instituicao">MINISTÉRIO ATALAIA</p>
+
+            <h1>Enciclopédia de História do Cristianismo</h1>
+
+            <p class="subtitulo">
+                Conhecendo a história, os personagens e os acontecimentos
+                que marcaram a trajetória do cristianismo.
+            </p>
+
+            <div class="ministerio">
+                Ministério Atalaia
+            </div>
+
+            <p class="lema">
+                Proclamando a Verdade. Formando Discípulos.
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- NAVEGAÇÃO -->
+
+    <nav class="navegacao">
+
+        <a href="index.html">Página do Curso</a>
+        <a href="#personagens">Personagens</a>
+        <a href="#acontecimentos">Acontecimentos</a>
+        <a href="#concilios">Concílios</a>
+        <a href="#doutrinas">Doutrinas</a>
+        <a href="#movimentos">Movimentos</a>
+        <a href="#instituicoes">Instituições</a>
+
+    </nav>
+
+    <main>
+
+        <!-- APRESENTAÇÃO -->
+
+        <section class="secao-apresentacao">
+
+            <p class="versiculo">
+                "Conheçamos e prossigamos em conhecer ao Senhor."
+            </p>
+
+            <p class="referencia-biblica">
+                Oseias 6:3
+            </p>
+
+            <h2>Biblioteca Histórica do Cristianismo</h2>
+
+            <p>
+                Esta enciclopédia foi organizada para auxiliar os alunos
+                do Curso de História do Cristianismo na pesquisa e no
+                aprofundamento dos principais temas da história da Igreja.
+            </p>
+
+            <p>
+                Cada cartão possui um botão que abre uma página própria
+                com conteúdo específico sobre o tema selecionado.
+            </p>
+
+            <a href="index.html" class="botao">
+                Voltar ao Curso
+            </a>
+
+        </section>
+
+        <!-- PESQUISA -->
+
+        <section class="secao" id="consulta">
+
+            <h2>Pesquisar na Enciclopédia</h2>
+
+            <p>
+                Digite o nome de um personagem, acontecimento,
+                concílio, doutrina, movimento ou instituição.
+            </p>
+
+            <div class="busca-enciclopedia">
+
+                <input
+                    type="search"
+                    id="pesquisa"
+                    placeholder="Pesquisar na enciclopédia..."
+                    aria-label="Pesquisar na enciclopédia">
+
+                <button
+                    type="button"
+                    class="botao"
+                    id="limparPesquisa">
+                    Limpar pesquisa
+                </button>
+
+            </div>
+
+            <div class="filtros">
+
+                <button class="filtro ativo" data-categoria="todos">
+                    Todos
+                </button>
+
+                <button class="filtro" data-categoria="personagens">
+                    Personagens
+                </button>
+
+                <button class="filtro" data-categoria="acontecimentos">
+                    Acontecimentos
+                </button>
+
+                <button class="filtro" data-categoria="concilios">
+                    Concílios
+                </button>
+
+                <button class="filtro" data-categoria="doutrinas">
+                    Doutrinas
+                </button>
+
+                <button class="filtro" data-categoria="movimentos">
+                    Movimentos
+                </button>
+
+                <button class="filtro" data-categoria="instituicoes">
+                    Instituições
+                </button>
+
+            </div>
+
+            <p id="contador" class="contador" aria-live="polite">
+                Carregando páginas...
+            </p>
+
+        </section>
+
+        <!-- ==================================
+             PERSONAGENS
+        =================================== -->
+
+        <section class="secao" id="personagens">
+
+            <h2>Personagens da História do Cristianismo</h2>
+
+            <p>
+                Conheça pessoas que desempenharam papéis importantes
+                na história bíblica e no desenvolvimento histórico
+                das comunidades cristãs.
+            </p>
+
+            <div class="grade-verbetes">
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>Jesus Cristo</h3>
+
+                    <span class="categoria-verbete">Personagem central</span>
+
+                    <p>
+                        Vida, ensinamentos, morte, ressurreição
+                        e significado de Jesus para a fé cristã.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: Evangelhos e Atos dos Apóstolos.
+                    </p>
+
+                    <a href="personagens/jesus-cristo.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>Pedro, apóstolo</h3>
+
+                    <span class="categoria-verbete">Era apostólica</span>
+
+                    <p>
+                        A trajetória de Pedro, seu ministério
+                        e sua participação na Igreja primitiva.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: Mateus 16; Atos 2–12.
+                    </p>
+
+                    <a href="personagens/pedro.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>Paulo de Tarso</h3>
+
+                    <span class="categoria-verbete">Era apostólica</span>
+
+                    <p>
+                        Conversão, viagens missionárias, cartas
+                        e contribuição para a expansão do evangelho.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: Atos 9; Romanos.
+                    </p>
+
+                    <a href="personagens/paulo-de-tarso.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>Constantino</h3>
+
+                    <span class="categoria-verbete">Império Romano</span>
+
+                    <p>
+                        O imperador romano e as transformações
+                        na relação entre o Império e os cristãos.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Período: século IV.
+                    </p>
+
+                    <a href="personagens/constantino.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>Agostinho de Hipona</h3>
+
+                    <span class="categoria-verbete">Pais da Igreja</span>
+
+                    <p>
+                        Vida, escritos, reflexões teológicas
+                        e influência na tradição cristã ocidental.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Período: 354–430.
+                    </p>
+
+                    <a href="personagens/agostinho-de-hipona.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>Martinho Lutero</h3>
+
+                    <span class="categoria-verbete">Reforma Protestante</span>
+
+                    <p>
+                        A vida do reformador alemão e suas
+                        contribuições para a Reforma Protestante.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Período: 1483–1546.
+                    </p>
+
+                    <a href="personagens/martinho-lutero.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>João Calvino</h3>
+
+                    <span class="categoria-verbete">Reforma Protestante</span>
+
+                    <p>
+                        Teólogo reformado, suas obras e sua
+                        influência no desenvolvimento de tradições
+                        protestantes.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Período: 1509–1564.
+                    </p>
+
+                    <a href="personagens/joao-calvino.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="personagens">
+
+                    <h3>John Wesley</h3>
+
+                    <span class="categoria-verbete">Metodismo</span>
+
+                    <p>
+                        Pregador inglês associado ao surgimento
+                        do metodismo e a movimentos de renovação
+                        espiritual do século XVIII.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Período: 1703–1791.
+                    </p>
+
+                    <a href="personagens/john-wesley.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================
+             ACONTECIMENTOS
+        =================================== -->
+
+        <section class="secao" id="acontecimentos">
+
+            <h2>Acontecimentos Históricos</h2>
+
+            <div class="grade-verbetes">
+
+                <article class="verbete" data-categoria="acontecimentos">
+
+                    <h3>Pentecostes</h3>
+
+                    <p>
+                        A descida do Espírito Santo sobre os discípulos
+                        e a proclamação pública do evangelho em Jerusalém.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referência: Atos 2.
+                    </p>
+
+                    <a href="acontecimentos/pentecostes.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="acontecimentos">
+
+                    <h3>Perseguições Romanas</h3>
+
+                    <p>
+                        Os diferentes períodos de repressão
+                        enfrentados por comunidades cristãs
+                        no Império Romano.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Período: séculos I–IV.
+                    </p>
+
+                    <a href="acontecimentos/perseguicoes-romanas.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="acontecimentos">
+
+                    <h3>Édito de Milão</h3>
+
+                    <p>
+                        Acordo de 313 associado à tolerância religiosa
+                        e à restituição de propriedades confiscadas
+                        de cristãos.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Data: 313 d.C.
+                    </p>
+
+                    <a href="acontecimentos/edito-de-milao.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="acontecimentos">
+
+                    <h3>Queda de Roma</h3>
+
+                    <p>
+                        O fim convencional do Império Romano do Ocidente
+                        e as transformações políticas e religiosas
+                        da Europa ocidental.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Data convencional: 476 d.C.
+                    </p>
+
+                    <a href="acontecimentos/queda-de-roma.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="acontecimentos">
+
+                    <h3>Grande Cisma</h3>
+
+                    <p>
+                        O processo histórico de afastamento entre
+                        as tradições cristãs do Ocidente latino
+                        e do Oriente grego.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Marco tradicional: 1054.
+                    </p>
+
+                    <a href="acontecimentos/grande-cisma.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="acontecimentos">
+
+                    <h3>Reforma Protestante</h3>
+
+                    <p>
+                        Movimentos de reforma religiosa do século XVI
+                        que transformaram o cristianismo ocidental.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Marco tradicional: 1517.
+                    </p>
+
+                    <a href="acontecimentos/reforma-protestante.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================
+             CONCÍLIOS
+        =================================== -->
+
+        <section class="secao" id="concilios">
+
+            <h2>Concílios da História da Igreja</h2>
+
+            <div class="grade-verbetes">
+
+                <article class="verbete" data-categoria="concilios">
+
+                    <h3>Concílio de Niceia</h3>
+
+                    <p>
+                        Reunião de 325 que tratou de controvérsias
+                        cristológicas e da relação entre o Pai e o Filho.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Data: 325 d.C.
+                    </p>
+
+                    <a href="concilios/concílio-de-niceia.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="concilios">
+
+                    <h3>Concílio de Constantinopla</h3>
+
+                    <p>
+                        Concílio de 381, importante para o
+                        desenvolvimento da formulação trinitária
+                        na tradição nicena.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Data: 381 d.C.
+                    </p>
+
+                    <a href="concilios/concílio-de-constantinopla.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="concilios">
+
+                    <h3>Concílio de Éfeso</h3>
+
+                    <p>
+                        Reunião de 431 relacionada a controvérsias
+                        cristológicas e ao título Theotokos.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Data: 431 d.C.
+                    </p>
+
+                    <a href="concilios/concílio-de-efeso.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="concilios">
+
+                    <h3>Concílio de Calcedônia</h3>
+
+                    <p>
+                        Concílio de 451 que formulou uma definição
+                        cristológica sobre a humanidade e a divindade
+                        de Cristo.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Data: 451 d.C.
+                    </p>
+
+                    <a href="concilios/concílio-de-calcedonia.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================
+             DOUTRINAS
+        =================================== -->
+
+        <section class="secao" id="doutrinas">
+
+            <h2>Doutrinas e Conceitos Teológicos</h2>
+
+            <div class="grade-verbetes">
+
+                <article class="verbete" data-categoria="doutrinas">
+
+                    <h3>Doutrina da Trindade</h3>
+
+                    <p>
+                        Estudo da formulação cristã sobre o Pai,
+                        o Filho e o Espírito Santo.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: Mateus 28:19; 2 Coríntios 13:13.
+                    </p>
+
+                    <a href="doutrinas/trindade.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="doutrinas">
+
+                    <h3>Cânon Bíblico</h3>
+
+                    <p>
+                        Estudo do reconhecimento e da formação
+                        das coleções de livros considerados
+                        Escrituras pelas tradições cristãs.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Tema: história das Escrituras.
+                    </p>
+
+                    <a href="doutrinas/canon-biblico.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="doutrinas">
+
+                    <h3>Cristologia</h3>
+
+                    <p>
+                        Estudo da identidade, da natureza
+                        e da obra de Jesus Cristo.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: João 1:1–14; Colossenses 1:15–20.
+                    </p>
+
+                    <a href="doutrinas/cristologia.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="doutrinas">
+
+                    <h3>Justificação pela Fé</h3>
+
+                    <p>
+                        Estudo de um tema bíblico e teológico central
+                        nos debates sobre salvação, graça, fé e obras.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: Romanos 3:21–28; Gálatas 2:16.
+                    </p>
+
+                    <a href="doutrinas/justificacao-pela-fe.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================
+             MOVIMENTOS
+        =================================== -->
+
+        <section class="secao" id="movimentos">
+
+            <h2>Movimentos Cristãos</h2>
+
+            <div class="grade-verbetes">
+
+                <article class="verbete" data-categoria="movimentos">
+
+                    <h3>Monasticismo</h3>
+
+                    <p>
+                        Desenvolvimento das tradições de vida monástica,
+                        oração e disciplina espiritual na história cristã.
+                    </p>
+
+                    <a href="movimentos/monasticismo.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="movimentos">
+
+                    <h3>Reforma Radical</h3>
+
+                    <p>
+                        Movimentos do século XVI que defenderam
+                        transformações profundas na vida e na
+                        organização das comunidades cristãs.
+                    </p>
+
+                    <a href="movimentos/reforma-radical.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="movimentos">
+
+                    <h3>Pietismo</h3>
+
+                    <p>
+                        Movimento de renovação protestante que enfatizou
+                        a devoção pessoal, o estudo bíblico e a prática da fé.
+                    </p>
+
+                    <a href="movimentos/pietismo.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="movimentos">
+
+                    <h3>Movimento Pentecostal</h3>
+
+                    <p>
+                        Movimento cristão moderno que enfatiza a atuação
+                        do Espírito Santo e os dons espirituais.
+                    </p>
+
+                    <a href="movimentos/movimento-pentecostal.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="movimentos">
+
+                    <h3>Movimento de Avivamento</h3>
+
+                    <p>
+                        Estudo de movimentos de renovação religiosa,
+                        seus contextos históricos e seus impactos
+                        nas comunidades cristãs.
+                    </p>
+
+                    <a href="movimentos/avivamentos-cristaos.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="movimentos">
+
+                    <h3>Movimento Missionário Moderno</h3>
+
+                    <p>
+                        A expansão das iniciativas missionárias
+                        e a formação de organizações dedicadas
+                        à evangelização em diferentes regiões.
+                    </p>
+
+                    <a href="movimentos/movimento-missionario.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================
+             INSTITUIÇÕES
+        =================================== -->
+
+        <section class="secao" id="instituicoes">
+
+            <h2>Igrejas e Instituições Cristãs</h2>
+
+            <div class="grade-verbetes">
+
+                <article class="verbete" data-categoria="instituicoes">
+
+                    <h3>Igreja Primitiva</h3>
+
+                    <p>
+                        As primeiras comunidades cristãs,
+                        sua organização, comunhão e expansão.
+                    </p>
+
+                    <p class="referencia-verbete">
+                        Referências: Atos 2:42–47; Atos 4:32–35.
+                    </p>
+
+                    <a href="instituicoes/igreja-primitiva.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="instituicoes">
+
+                    <h3>Igreja Católica Romana</h3>
+
+                    <p>
+                        A história, a organização e o desenvolvimento
+                        da tradição cristã ocidental ligada ao bispo de Roma.
+                    </p>
+
+                    <a href="instituicoes/igreja-catolica-romana.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="instituicoes">
+
+                    <h3>Igrejas Ortodoxas</h3>
+
+                    <p>
+                        História das tradições cristãs orientais,
+                        suas liturgias e seu desenvolvimento histórico.
+                    </p>
+
+                    <a href="instituicoes/igrejas-ortodoxas.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+                <article class="verbete" data-categoria="instituicoes">
+
+                    <h3>Sociedades Missionárias</h3>
+
+                    <p>
+                        Organizações dedicadas ao envio de missionários,
+                        à tradução bíblica e à expansão do cristianismo.
+                    </p>
+
+                    <a href="instituicoes/sociedades-missionarias.html" class="botao">
+                        Abrir página
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- LINHA DO TEMPO -->
+
+        <section class="secao" id="cronologia">
+
+            <h2>Linha do Tempo do Cristianismo</h2>
+
+            <div class="linha-do-tempo">
+
+                <article class="evento">
+                    <span class="data">Século I</span>
+                    <p>
+                        Ministério de Jesus, formação das primeiras
+                        comunidades cristãs e expansão apostólica.
+                    </p>
+                </article>
+
+                <article class="evento">
+                    <span class="data">313 d.C.</span>
+                    <p>
+                        Édito de Milão e estabelecimento de tolerância
+                        religiosa no Império Romano.
+                    </p>
+                </article>
+
+                <article class="evento">
+                    <span class="data">325 d.C.</span>
+                    <p>
+                        Concílio de Niceia.
+                    </p>
+                </article>
+
+                <article class="evento">
+                    <span class="data">1054</span>
+                    <p>
+                        Marco tradicional do Grande Cisma entre
+                        Oriente e Ocidente.
+                    </p>
+                </article>
+
+                <article class="evento">
+                    <span class="data">1517</span>
+                    <p>
+                        Marco tradicional associado ao início
+                        da Reforma Protestante.
+                    </p>
+                </article>
+
+                <article class="evento">
+                    <span class="data">Século XX</span>
+                    <p>
+                        Crescimento e expansão global do pentecostalismo
+                        moderno e de diferentes movimentos missionários.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ORIENTAÇÕES -->
+
+        <section class="secao">
+
+            <h2>Orientações de Estudo</h2>
+
+            <ul>
+                <li>
+                    Selecione o assunto que deseja estudar.
+                </li>
+
+                <li>
+                    Clique em "Abrir página" para acessar o conteúdo
+                    individual do tema.
+                </li>
+
+                <li>
+                    Compare as informações históricas com fontes
+                    documentais e bibliográficas.
+                </li>
+
+                <li>
+                    Quando houver referências bíblicas, leia os textos
+                    em seu contexto.
+                </li>
+
+                <li>
+                    Diferencie as afirmações das Escrituras,
+                    as interpretações teológicas e as reconstruções
+                    históricas.
+                </li>
+            </ul>
+
+            <div class="observacao">
+                <strong>Nota:</strong>
+                esta página funciona como um catálogo de navegação.
+                O conteúdo aprofundado de cada assunto deve ser
+                desenvolvido em sua própria página HTML.
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+
+                <a href="index.html" class="botao">
+                    Voltar ao Curso de História do Cristianismo
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+
+    <footer class="rodape">
+
+        <p class="nome-rodape">MINISTÉRIO ATALAIA</p>
+
+        <p>Curso de História do Cristianismo</p>
+
+        <p>Proclamando a Verdade. Formando Discípulos.</p>
+
+        <p>
+            &copy; <span id="ano-atual"></span>
+            Ministério Atalaia.
+        </p>
+
+        <a href="index.html">
+            Página principal do curso
+        </a>
+
+    </footer>
+
+    <!-- JAVASCRIPT DA ENCICLOPÉDIA -->
+
+    <script src="js/enciclopedia.js"></script>
+
+</body>
+
+</html>

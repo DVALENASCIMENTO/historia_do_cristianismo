@@ -1,0 +1,850 @@
+/* =========================================
+   ESCOLA BÍBLICA ATALAIA
+   CURSO DE HISTÓRIA DO CRISTIANISMO
+   Arquivo: css/style.css
+========================================= */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azul: #102b50;
+    --azul-escuro: #091b34;
+    --azul-claro: #eaf0f7;
+    --dourado: #b38a3e;
+    --dourado-claro: #d8b66d;
+    --branco: #ffffff;
+    --fundo: #f5f6f8;
+    --texto: #263344;
+    --texto-suave: #647184;
+    --borda: #e1e5eb;
+    --sombra: 0 5px 20px rgba(9, 27, 52, 0.08);
+    --raio: 12px;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fundo);
+    color: var(--texto);
+    line-height: 1.75;
+    font-size: 16px;
+}
+
+/* LINKS */
+a {
+    color: var(--azul);
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+a:hover {
+    color: var(--dourado);
+}
+
+/* CABEÇALHO */
+.cabecalho {
+    background: var(--branco);
+    border-top: 8px solid var(--dourado);
+    box-shadow: var(--sombra);
+}
+
+.identidade {
+    max-width: 1100px;
+    margin: auto;
+    padding: 55px 20px 45px;
+    text-align: center;
+}
+
+.instituicao {
+    color: var(--dourado);
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+.identidade h1 {
+    max-width: 950px;
+    margin: 0 auto 15px;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.subtitulo {
+    max-width: 750px;
+    margin: 20px auto;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1rem, 2.4vw, 1.45rem);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.ministerio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 30px;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: bold;
+}
+
+.ministerio::before,
+.ministerio::after {
+    content: "";
+    width: 65px;
+    height: 2px;
+    background: var(--dourado);
+}
+
+.lema {
+    color: var(--texto-suave);
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+/* NAVEGAÇÃO */
+.navegacao {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 12px 15px;
+    background: var(--azul);
+}
+
+.navegacao a {
+    padding: 10px 14px;
+    color: var(--branco);
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.navegacao a:hover {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+}
+
+/* CONTEÚDO PRINCIPAL */
+main {
+    width: min(1100px, 94%);
+    margin: 35px auto;
+}
+
+.secao {
+    margin-bottom: 30px;
+    padding: clamp(22px, 4vw, 38px);
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    scroll-margin-top: 90px;
+}
+
+.secao h2 {
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.3;
+    border-bottom: 2px solid var(--dourado);
+}
+
+.secao h3 {
+    margin: 25px 0 12px;
+    color: var(--azul);
+    font-size: 1.15rem;
+}
+
+.secao p {
+    margin-bottom: 15px;
+}
+
+.secao ul,
+.secao ol {
+    padding-left: 25px;
+    margin-bottom: 18px;
+}
+
+.secao li {
+    margin-bottom: 7px;
+}
+
+strong {
+    color: var(--azul);
+}
+
+/* APRESENTAÇÃO */
+.secao-apresentacao {
+    padding: clamp(35px, 6vw, 70px) 25px;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(145deg, #ffffff, #edf2f8);
+    border: 1px solid #e0d2b3;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.versiculo {
+    max-width: 700px;
+    margin: 0 auto 10px;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-style: italic;
+}
+
+.referencia-biblica {
+    margin-bottom: 30px;
+    color: var(--dourado);
+    font-weight: bold;
+}
+
+.secao-apresentacao h2 {
+    margin-bottom: 15px;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+.secao-apresentacao > p:not(.versiculo):not(.referencia-biblica) {
+    max-width: 750px;
+    margin: 0 auto 25px;
+    color: var(--texto-suave);
+}
+
+/* BOTÕES */
+.botao {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 5px;
+    padding: 13px 23px;
+    background: var(--azul);
+    color: var(--branco);
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid var(--azul);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s,
+                border-color 0.25s, transform 0.25s;
+}
+
+.botao:hover {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+    border-color: var(--dourado);
+    transform: translateY(-2px);
+}
+
+.botao-enciclopedia {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+    border-color: var(--dourado);
+}
+
+.botao-enciclopedia:hover {
+    background: var(--azul);
+    color: var(--branco);
+    border-color: var(--azul);
+}
+
+/* INFORMAÇÕES GERAIS */
+.grade-informacoes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 25px 0;
+}
+
+.cartao-informacao {
+    min-width: 0;
+    padding: 20px 15px;
+    background: var(--azul-claro);
+    border-left: 4px solid var(--dourado);
+    border-radius: 7px;
+}
+
+.cartao-informacao h3 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+}
+
+.cartao-informacao p {
+    margin: 0;
+    color: var(--texto);
+    font-size: 0.95rem;
+}
+
+/* ENCICLOPÉDIA */
+.secao-enciclopedia {
+    text-align: center;
+    background: linear-gradient(140deg, var(--azul), var(--azul-escuro));
+    border: 2px solid var(--dourado);
+}
+
+.secao-enciclopedia h2 {
+    color: var(--dourado-claro);
+    border-bottom-color: var(--dourado);
+}
+
+.secao-enciclopedia p {
+    max-width: 750px;
+    margin: 0 auto 18px;
+    color: #edf2f8;
+}
+
+.secao-enciclopedia .botao {
+    margin-top: 10px;
+    background: var(--dourado);
+    color: var(--azul-escuro);
+    border-color: var(--dourado);
+}
+
+.secao-enciclopedia .botao:hover {
+    background: var(--branco);
+    border-color: var(--branco);
+}
+
+/* MÓDULOS */
+.modulo {
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+    box-shadow: 0 2px 8px rgba(9, 27, 52, 0.04);
+}
+
+.modulo summary {
+    position: relative;
+    padding: 20px 50px 20px 22px;
+    background: var(--azul);
+    color: var(--branco);
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.25s;
+}
+
+.modulo summary::-webkit-details-marker {
+    display: none;
+}
+
+.modulo summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    color: var(--dourado-claro);
+    font-size: 1.7rem;
+}
+
+.modulo[open] summary::after {
+    content: "−";
+}
+
+.modulo summary:hover {
+    background: #1b416f;
+}
+
+.modulo summary span {
+    display: block;
+    margin-top: 5px;
+    color: #d5dfed;
+    font-size: 0.85rem;
+    font-weight: normal;
+}
+
+.modulo > p {
+    margin: 20px 22px;
+}
+
+.modulo > p:last-child {
+    margin-bottom: 24px;
+}
+
+/* AULAS */
+.aula {
+    margin: 18px 22px;
+    padding: 22px;
+    background: #f8fafc;
+    border: 1px solid var(--borda);
+    border-left: 4px solid var(--dourado);
+    border-radius: 8px;
+}
+
+.aula h3 {
+    margin: 0 0 14px;
+    color: var(--azul);
+    font-size: 1.08rem;
+    line-height: 1.5;
+}
+
+.aula ul {
+    margin-bottom: 15px;
+    padding-left: 22px;
+}
+
+.aula li {
+    margin-bottom: 5px;
+}
+
+.link-aula {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 9px 15px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #cbd7e6;
+}
+
+.link-aula:hover {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+    border-color: var(--dourado);
+}
+
+/* CITAÇÕES */
+blockquote {
+    margin: 25px 0;
+    padding: 22px;
+    background: #f8f5ed;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    border-left: 5px solid var(--dourado);
+    border-radius: 5px;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: 12px;
+    color: var(--dourado);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* LINHA DO TEMPO */
+.linha-do-tempo {
+    position: relative;
+    margin: 30px 0;
+    padding-left: 30px;
+    border-left: 3px solid var(--dourado);
+}
+
+.evento {
+    position: relative;
+    margin-bottom: 25px;
+    padding: 18px 22px;
+    background: #f8fafc;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+}
+
+.evento::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: -39px;
+    width: 15px;
+    height: 15px;
+    background: var(--dourado);
+    border: 3px solid var(--branco);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--dourado);
+}
+
+.data {
+    display: inline-block;
+    margin-bottom: 7px;
+    color: var(--dourado);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.evento p {
+    margin: 0;
+}
+
+.observacao {
+    padding: 15px;
+    background: #f8f5ed;
+    border-left: 4px solid var(--dourado);
+    border-radius: 5px;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+}
+
+/* PERSONAGENS */
+.grade-personagens {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 25px 0;
+}
+
+.personagem {
+    padding: 22px;
+    background: #f8fafc;
+    border: 1px solid var(--borda);
+    border-top: 4px solid var(--dourado);
+    border-radius: 8px;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.personagem:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
+}
+
+.personagem h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.personagem p {
+    margin: 0;
+    color: var(--texto-suave);
+}
+
+/* METODOLOGIA */
+.lista-metodologia li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.lista-metodologia li:last-child {
+    border-bottom: none;
+}
+
+/* MATERIAIS */
+.lista-materiais {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 25px 0;
+}
+
+.lista-materiais article {
+    padding: 20px;
+    background: #f8fafc;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+}
+
+.lista-materiais h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.lista-materiais p {
+    margin: 0;
+    color: var(--texto-suave);
+}
+
+/* BIBLIOGRAFIA */
+.bibliografia li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.bibliografia li:last-child {
+    border-bottom: none;
+}
+
+/* CERTIFICAÇÃO */
+.secao-certificacao {
+    text-align: center;
+    border: 2px solid var(--dourado);
+    background: linear-gradient(145deg, #ffffff, #fbf8f0);
+}
+
+.secao-certificacao h2 {
+    text-align: left;
+}
+
+.secao-certificacao h3 {
+    color: var(--dourado);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.4rem;
+}
+
+.titulo-certificado {
+    margin: 20px 0;
+    color: var(--azul);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* PRIMEIRA AULA */
+.secao-primeira-aula {
+    border-top: 5px solid var(--dourado);
+}
+
+.secao-primeira-aula h3 {
+    font-size: 1.3rem;
+}
+
+/* RODAPÉ */
+.rodape {
+    padding: 35px 20px;
+    background: var(--azul-escuro);
+    color: #dce5f0;
+    text-align: center;
+    border-top: 5px solid var(--dourado);
+}
+
+.nome-rodape {
+    margin-bottom: 10px;
+    color: var(--dourado-claro);
+    font-size: 1.15rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.rodape p {
+    margin: 5px 0;
+}
+
+.rodape a {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 9px 16px;
+    color: var(--dourado-claro);
+    border: 1px solid var(--dourado);
+    border-radius: 5px;
+}
+
+.rodape a:hover {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+}
+
+/* ACESSIBILIDADE */
+a:focus-visible,
+summary:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 4px;
+}
+
+/* TABLETS */
+@media (max-width: 900px) {
+    .grade-informacoes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grade-personagens {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .navegacao {
+        gap: 2px;
+    }
+
+    .navegacao a {
+        padding: 9px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .identidade {
+        padding: 35px 16px;
+    }
+
+    .instituicao {
+        font-size: 0.78rem;
+        letter-spacing: 2px;
+    }
+
+    .ministerio {
+        gap: 10px;
+    }
+
+    .ministerio::before,
+    .ministerio::after {
+        width: 30px;
+    }
+
+    .navegacao {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .navegacao a {
+        text-align: center;
+        padding: 10px 5px;
+        font-size: 0.82rem;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .secao {
+        padding: 22px 17px;
+        margin-bottom: 20px;
+    }
+
+    .secao-apresentacao {
+        padding: 35px 18px;
+    }
+
+    .grade-informacoes,
+    .grade-personagens,
+    .lista-materiais {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao-informacao {
+        padding: 17px;
+    }
+
+    .modulo summary {
+        padding: 17px 42px 17px 15px;
+        font-size: 0.95rem;
+    }
+
+    .modulo summary::after {
+        right: 13px;
+    }
+
+    .aula {
+        margin: 15px 10px;
+        padding: 17px 14px;
+    }
+
+    .modulo > p {
+        margin: 17px 15px;
+    }
+
+    .botao {
+        width: 100%;
+        margin: 7px 0;
+        padding: 13px 15px;
+    }
+
+    .linha-do-tempo {
+        padding-left: 23px;
+    }
+
+    .evento {
+        padding: 15px;
+    }
+
+    .evento::before {
+        left: -32px;
+        width: 12px;
+        height: 12px;
+    }
+
+    blockquote {
+        padding: 17px;
+        font-size: 1rem;
+    }
+
+    .titulo-certificado {
+        font-size: 1.4rem;
+    }
+}
+
+/* IMPRESSÃO */
+@media print {
+    body {
+        background: #ffffff;
+        color: #000000;
+        font-size: 12pt;
+    }
+
+    .navegacao,
+    .botao,
+    .link-aula,
+    .rodape a {
+        display: none !important;
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+    }
+
+    .secao,
+    .modulo,
+    .aula,
+    .personagem,
+    .evento {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .modulo > * {
+        display: block;
+    }
+
+    .modulo summary {
+        background: #eeeeee;
+        color: #000000;
+        border: 1px solid #999999;
+    }
+
+    .modulo summary span {
+        color: #333333;
+    }
+
+    .secao-enciclopedia {
+        background: #ffffff;
+        color: #000000;
+    }
+
+    .secao-enciclopedia h2,
+    .secao-enciclopedia p {
+        color: #000000;
+    }
+
+    .rodape {
+        background: #ffffff;
+        color: #000000;
+        border-top: 1px solid #999999;
+    }
+}
