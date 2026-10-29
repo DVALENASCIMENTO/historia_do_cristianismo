@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tiago, filho de Zebedeu: vida, chamado, ministério e importância na história do cristianismo, à luz do Novo Testamento.">
+<title>Flipbook — História do Cristianismo: Tiago, filho de Zebedeu</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font:.8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo</h1>
+<p class="subtitle">Tiago, filho de Zebedeu · Apóstolo de Jesus</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+{
+kicker:"História do Cristianismo",
+title:"Tiago, filho de Zebedeu",
+body:`Tiago, filho de Zebedeu e irmão de João, foi um dos doze apóstolos escolhidos por Jesus. Os Evangelhos o apresentam entre os pescadores da Galileia que deixaram o trabalho para seguir o Mestre.
+
+Tiago pertenceu ao círculo de discípulos que presenciou momentos especialmente importantes do ministério de Jesus. Junto com Pedro e João, esteve presente em episódios como a ressurreição da filha de Jairo, a transfiguração e a oração de Jesus no Getsêmani.
+
+Seu percurso bíblico também inclui uma advertência sobre ambição e serviço: Jesus ensinou que a grandeza entre seus discípulos se manifesta em servir, não em dominar.`,
+verse:"“Podeis vós beber o cálice que eu bebo?” — Marcos 10:38"
+},
+{
+kicker:"1. Identificação e família",
+title:"Quem foi Tiago?",
+body:`Tiago era filho de Zebedeu e irmão de João. Os dois trabalhavam como pescadores e foram chamados por Jesus enquanto estavam no contexto do trabalho com seu pai e outros trabalhadores.
+
+Ele é geralmente chamado de Tiago, filho de Zebedeu, para distingui-lo de outros homens com o mesmo nome mencionados no Novo Testamento, incluindo Tiago, filho de Alfeu, e Tiago, irmão do Senhor.
+
+A Bíblia não informa sua data de nascimento. Para conhecer sua trajetória, o ponto de partida mais seguro são os relatos dos Evangelhos e a referência à sua morte no livro de Atos.`,
+verse:"Leitura principal: Mateus 4:21–22; Marcos 1:19–20."
+},
+{
+kicker:"2. O chamado de Jesus",
+title:"Deixou as redes para seguir o Mestre",
+body:`Mateus e Marcos relatam que Jesus chamou Tiago e seu irmão João enquanto eles estavam num barco, consertando as redes com Zebedeu, seu pai. Os irmãos deixaram o barco e o trabalho para seguir Jesus.
+
+O texto destaca a prontidão da resposta dos dois irmãos. Não oferece todos os detalhes sobre as consequências econômicas ou familiares da decisão, mas mostra que o chamado de Jesus passou a orientar a vida deles.
+
+O episódio integra o início do ministério público de Jesus na Galileia e apresenta discípulos sendo convocados para acompanhá-lo.`,
+verse:"Leitura: Mateus 4:21–22; Marcos 1:19–20."
+},
+{
+kicker:"3. Tiago entre os Doze",
+title:"Um dos apóstolos escolhidos",
+body:`Tiago foi incluído no grupo dos doze apóstolos. Seu nome aparece nas listas apostólicas de Mateus, Marcos, Lucas e Atos, embora a ordem varie entre os textos.
+
+Ele não deve ser confundido com outros personagens chamados Tiago. A identificação “filho de Zebedeu” é especialmente útil para distinguir o apóstolo de outros homens que aparecem nas narrativas do Novo Testamento.
+
+Os Evangelhos não registram todas as tarefas individuais que Tiago realizou. Podemos afirmar com segurança que ele foi chamado por Jesus, integrou os Doze e acompanhou o Mestre durante seu ministério.`,
+verse:"Leitura: Mateus 10:2–4; Marcos 3:16–19; Lucas 6:13–16; Atos 1:13."
+},
+{
+kicker:"4. Tiago, João e Pedro",
+title:"Um círculo próximo de discípulos",
+body:`Em diferentes episódios, Jesus levou consigo Pedro, Tiago e João. Os três testemunharam acontecimentos que não são descritos como presenciados por todo o grupo de discípulos.
+
+Entre esses momentos estão a ressurreição da filha de Jairo, a transfiguração de Jesus e a oração no Getsêmani, pouco antes de sua prisão.
+
+Os textos não explicam todos os motivos pelos quais esses três foram escolhidos para acompanhar Jesus nesses episódios. É importante, portanto, reconhecer o que os relatos dizem sem criar explicações que não estão no texto.`,
+verse:"Leitura: Marcos 5:37–43; 9:2–8; 14:32–42."
+},
+{
+kicker:"5. A filha de Jairo",
+title:"Testemunha de um sinal de Jesus",
+body:`Quando Jairo pediu ajuda para sua filha, Jesus permitiu que Pedro, Tiago e João o acompanhassem até a casa. Ali, Jesus tomou a menina pela mão e ela se levantou.
+
+O relato mostra Tiago presente num episódio em que Jesus manifesta autoridade diante da morte. O texto concentra a atenção na ação de Cristo e na reação das pessoas que testemunharam o acontecimento.
+
+A passagem deve ser lida dentro do conjunto dos Evangelhos, que apresentam os sinais de Jesus como parte de seu ministério e de sua identidade.`,
+verse:"Leitura: Marcos 5:21–43; Lucas 8:40–56."
+},
+{
+kicker:"6. A transfiguração",
+title:"Tiago vê a glória de Jesus",
+body:`Tiago, Pedro e João acompanharam Jesus a um monte, onde presenciaram a transfiguração. Os relatos descrevem a aparência de Jesus transformada e mencionam Moisés e Elias conversando com ele.
+
+Os discípulos ficaram assombrados, e uma voz da nuvem declarou que Jesus era o Filho amado a quem deveriam ouvir. O episódio aponta para a identidade e a autoridade de Cristo.
+
+A Bíblia não nomeia o monte nos relatos da transfiguração. Identificações tradicionais existem, mas devem ser distinguidas daquilo que o próprio texto declara.`,
+verse:"“Este é o meu Filho amado; a ele ouvi.” — Marcos 9:7"
+},
+{
+kicker:"7. Um pedido de honra",
+title:"A ambição dos filhos de Zebedeu",
+body:`Mateus relata que a mãe dos filhos de Zebedeu fez um pedido a Jesus relacionado a lugares de honra em seu Reino. Marcos apresenta os próprios Tiago e João fazendo o pedido. Os dois relatos destacam a questão da posição e da grandeza.
+
+Jesus respondeu perguntando se eles poderiam beber o cálice que ele beberia. Em seguida, ensinou aos discípulos que não deveriam reproduzir o modelo de poder dos governantes das nações.
+
+O episódio não termina com a promoção da ambição, mas com uma correção de Jesus: entre seus seguidores, a grandeza está ligada ao serviço.`,
+verse:"“Qualquer que entre vós quiser ser grande será vosso serviçal.” — Mateus 20:26"
+},
+{
+kicker:"8. O significado do cálice",
+title:"Seguir Jesus envolve compromisso",
+body:`Ao perguntar se Tiago e João poderiam beber o seu cálice, Jesus usou uma imagem que aponta para o sofrimento que enfrentaria. Ele afirmou que os irmãos beberiam desse cálice, mas esclareceu que os lugares de honra não cabia a ele conceder segundo a pretensão deles.
+
+O diálogo ensina que seguir Jesus não é uma garantia de prestígio ou posição. O discipulado envolve compromisso, humildade e disposição para servir.
+
+A passagem deve ser compreendida junto da explicação de Jesus sobre o serviço e sua própria missão de dar a vida em resgate por muitos.`,
+verse:"Leitura: Marcos 10:35–45; Mateus 20:20–28."
+},
+{
+kicker:"9. O apelido Boanerges",
+title:"Filhos do trovão",
+body:`Marcos informa que Jesus deu a Tiago e João o nome Boanerges, traduzido no texto como “filhos do trovão”. O Evangelho registra o apelido, mas não oferece uma explicação definitiva para todos os seus sentidos.
+
+Em Lucas, os dois irmãos aparecem num episódio em que desejam que desça fogo do céu sobre uma aldeia samaritana que não recebeu Jesus. O Mestre os repreende, conforme a forma do relato bíblico.
+
+Essas passagens mostram que os irmãos precisavam aprender a responder às pessoas segundo os ensinamentos e a missão de Jesus, e não por impulso ou desejo de retaliação.`,
+verse:"Leitura: Marcos 3:17; Lucas 9:51–56."
+},
+{
+kicker:"10. Tiago e o discurso sobre o futuro",
+title:"Ouvindo os ensinamentos de Jesus",
+body:`Marcos registra que Pedro, Tiago, João e André perguntaram a Jesus, em particular, sobre a destruição do templo e os acontecimentos futuros.
+
+Jesus os advertiu contra o engano e ensinou sobre vigilância, perseverança e fidelidade. O texto contém passagens interpretadas de maneiras diferentes pelas tradições cristãs, por isso deve ser estudado com atenção ao contexto.
+
+O relato apresenta Tiago como ouvinte dos ensinamentos de Jesus, sem atribuir a ele uma interpretação particular que o Evangelho não registra.`,
+verse:"Leitura: Marcos 13:3–13, 32–37."
+},
+{
+kicker:"11. A morte de Tiago",
+title:"O primeiro apóstolo dos Doze a morrer como mártir",
+body:`O livro de Atos registra que o rei Herodes mandou matar à espada Tiago, irmão de João. Essa é a informação bíblica direta sobre sua morte.
+
+O relato não descreve as últimas palavras de Tiago nem apresenta detalhes extensos sobre o julgamento. Também não fornece uma data exata para o acontecimento, embora o situe no período de perseguição à comunidade cristã em Jerusalém.
+
+Tiago é o primeiro dos Doze cuja morte é narrada explicitamente em Atos. Essa informação deve ser distinguida de tradições posteriores que acrescentam pormenores não encontrados no texto bíblico.`,
+verse:"“E matou à espada Tiago, irmão de João.” — Atos 12:2"
+},
+{
+kicker:"12. O que sabemos após a ressurreição",
+title:"Uma trajetória narrada de forma breve",
+body:`Atos 1 inclui Tiago, filho de Zebedeu, na lista dos apóstolos reunidos em Jerusalém depois da ascensão de Jesus. Mais adiante, Atos 12 relata sua morte por ordem de Herodes.
+
+Entre essas referências, o Novo Testamento não oferece uma biografia completa de suas atividades individuais. Por isso, não é possível montar um itinerário detalhado de suas viagens missionárias com base apenas nos textos bíblicos.
+
+A leitura responsável respeita tanto o que a Escritura afirma quanto os limites das informações que ela preserva.`,
+verse:"Leitura: Atos 1:12–14; 12:1–3."
+},
+{
+kicker:"13. Tiago na história cristã",
+title:"Tradições e distinções históricas",
+body:`Ao longo dos séculos, diferentes tradições cristãs associaram Tiago, filho de Zebedeu, a memórias, lugares de peregrinação e relatos sobre seu legado. Algumas tradições posteriores narram episódios que não aparecem no Novo Testamento.
+
+Essas tradições são relevantes para estudar a história do cristianismo, mas não devem ser apresentadas como se fossem relatos bíblicos diretos. Quando se menciona um destino missionário ou um detalhe de seu martírio que não está em Atos, é necessário identificar a origem da informação.
+
+Para a reconstrução básica de sua vida, os Evangelhos e Atos permanecem as fontes principais.`,
+verse:"Referências bíblicas centrais: Mateus 4:21–22; Marcos 9:2–8; 10:35–45; Atos 12:1–2."
+},
+{
+kicker:"14. Lições para a vida cristã",
+title:"O que aprendemos com Tiago?",
+body:`1. Responder ao chamado: Tiago deixou as redes para seguir Jesus.
+2. Aprender com o Mestre: acompanhou Jesus em momentos importantes e ouviu seus ensinamentos.
+3. Rever a ambição: Jesus corrigiu a busca por posições de honra.
+4. Servir em vez de dominar: a grandeza no Reino está ligada ao serviço.
+5. Permanecer fiel: Atos registra que Tiago sofreu a morte por ordem de Herodes.
+
+Essas lições vêm dos episódios registrados no Novo Testamento. Elas não exigem que se atribuam ao apóstolo falas ou acontecimentos que a Bíblia não menciona.`,
+verse:"Leitura: Marcos 1:19–20; 10:35–45; Atos 12:1–2."
+},
+{
+kicker:"15. Cronologia e referências",
+title:"Percurso bíblico de Tiago",
+body:`• Chamado junto com João: Mateus 4:21–22; Marcos 1:19–20.
+• Incluído entre os Doze: Mateus 10:2–4; Lucas 6:13–16.
+• Presente na casa de Jairo: Marcos 5:37–43.
+• Testemunha da transfiguração: Marcos 9:2–8.
+• Corrigido por Jesus sobre grandeza e serviço: Marcos 10:35–45.
+• Entre os quatro que perguntam sobre o templo: Marcos 13:3.
+• Reunido com os apóstolos em Jerusalém: Atos 1:13.
+• Morto à espada por ordem de Herodes: Atos 12:1–2.
+
+O Novo Testamento não informa a data exata de nascimento de Tiago nem fornece uma cronologia completa de todas as suas atividades.`,
+verse:"Fonte principal: Novo Testamento."
+},
+{
+kicker:"Encerramento",
+title:"Um apóstolo chamado a servir",
+body:`Tiago, filho de Zebedeu, foi um dos primeiros discípulos chamados por Jesus e integrou o grupo dos doze apóstolos. Acompanhou o Mestre em momentos marcantes, ouviu suas instruções e também foi corrigido quando ele e seu irmão buscaram posições de honra.
+
+A narrativa bíblica não esconde as limitações dos discípulos. Ela mostra Jesus ensinando-os a trocar a ambição pelo serviço e a compreender a grandeza segundo os valores do Reino de Deus.
+
+Atos registra que Tiago morreu por ordem de Herodes. Sua trajetória, conforme as fontes bíblicas, lembra que o discipulado envolve resposta ao chamado, transformação do caráter e fidelidade a Cristo.`,
+verse:"“O Filho do Homem também não veio para ser servido, mas para servir.” — Marcos 10:45"
+}
+];
+
+let current = 0;
+const $ = id => document.getElementById(id);
+const book = $("book");
+function render(){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").textContent = p.body;
+  const quote = document.createElement("div");
+  quote.className = "verse";
+  quote.textContent = p.verse;
+  $("pageBody").appendChild(quote);
+  $("pageNumber").textContent = `${current+1} / ${pages.length}`;
+  $("status").textContent = `Página ${current+1} de ${pages.length}`;
+  $("progress").style.width = `${((current+1)/pages.length)*100}%`;
+  $("pageText").textContent = `${p.title}\n\n${p.body}\n\n${p.verse}`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length-1;
+}
+function go(step){
+  const next = current + step;
+  if(next < 0 || next >= pages.length) return;
+  current = next;
+  book.classList.remove("turn-next","turn-prev");
+  void book.offsetWidth;
+  book.classList.add(step > 0 ? "turn-next" : "turn-prev");
+  render();
+}
+$("prev").addEventListener("click",()=>go(-1));
+$("next").addEventListener("click",()=>go(1));
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não está disponível neste navegador.");return;}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance($("pageText").textContent);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.94;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window) speechSynthesis.cancel();});
+let startX = 0;
+book.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX;},{passive:true});
+book.addEventListener("touchend",e=>{
+  const diff=e.changedTouches[0].screenX-startX;
+  if(Math.abs(diff)>55) go(diff<0?1:-1);
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+render();
+</script>
+</body>
+</html>

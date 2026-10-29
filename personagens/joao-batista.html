@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="João Batista: vida, ministério, mensagem e legado na história do cristianismo, à luz das Escrituras.">
+<title>Flipbook — História do Cristianismo: João Batista</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font: .8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo — Capítulo 2</h1>
+<p class="subtitle">João Batista · O precursor do Messias e a voz que clamou no deserto</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+{
+kicker:"História do Cristianismo • Capítulo 2",
+title:"João Batista",
+body:`O precursor do Messias, pregador do arrependimento e testemunha que apontou para Jesus Cristo.
+
+João Batista ocupa um lugar singular na história bíblica. Sua missão foi preparar o povo para a chegada do Senhor, chamando as pessoas ao arrependimento e anunciando que o Reino de Deus estava próximo. Sua atuação marca a transição entre a expectativa profética de Israel e o início público do ministério de Jesus.
+
+Os Evangelhos apresentam João não como o Messias, mas como aquele que veio dar testemunho da Luz e preparar o caminho para ela.`,
+verse:"“Preparai o caminho do Senhor, endireitai as suas veredas.” — Marcos 1:3"
+},
+{
+kicker:"1. Identificação e contexto histórico",
+title:"Quem foi João Batista?",
+body:`Nome: João, conhecido como João Batista ou João, o Batizador.
+Pais: Zacarias, sacerdote, e Isabel, descendente de Arão.
+Período: século I d.C.
+Atuação: região do deserto da Judeia e áreas próximas ao rio Jordão.
+Parentesco com Jesus: Lucas apresenta Maria e Isabel como parentes (Lucas 1:36); o texto não especifica o grau exato desse parentesco.
+
+O sobrenome “Batista” identifica sua atividade pública de batizar pessoas que respondiam à sua mensagem de arrependimento. João não fundou uma religião independente: sua pregação se desenvolveu no contexto judaico, entre pessoas que aguardavam a ação de Deus e a consolação de Israel.
+
+Os Evangelhos não fornecem datas exatas para seu nascimento ou morte. Por isso, é mais responsável situar sua vida de forma geral no século I, sem apresentar anos específicos como certezas.`,
+verse:"Leitura principal: Lucas 1:5–25; Lucas 1:57–80; Marcos 1:1–8."
+},
+{
+kicker:"2. Nascimento anunciado",
+title:"Uma promessa a Zacarias e Isabel",
+body:`Lucas relata que Zacarias era sacerdote e que sua esposa, Isabel, era justa diante de Deus. O casal não tinha filhos e ambos eram avançados em idade. Enquanto Zacarias exercia seu serviço no templo, o anjo Gabriel anunciou que Isabel teria um filho chamado João.
+
+Segundo o anúncio, a criança seria motivo de alegria e teria uma missão especial diante do Senhor. João seria cheio do Espírito Santo desde o ventre materno e conduziria muitos em Israel ao Senhor. Sua obra aconteceria “no espírito e poder de Elias”, preparando um povo para Deus (Lucas 1:13–17).
+
+Zacarias questionou como aquilo poderia acontecer diante da idade do casal e ficou sem poder falar até o cumprimento da promessa. Isabel concebeu e, ao nascer a criança, a família confirmou o nome João. Zacarias recuperou a fala e louvou a Deus.
+
+O relato destaca a iniciativa divina e a preparação providencial para a missão de João.`,
+verse:"Leia Lucas 1:5–25, 57–80."
+},
+{
+kicker:"3. A missão profética",
+title:"A voz que clama no deserto",
+body:`João apareceu no deserto, proclamando um batismo de arrependimento para perdão dos pecados. Sua mensagem convocava o povo a abandonar a hipocrisia e a demonstrar, por meio da vida, a sinceridade do arrependimento.
+
+Os Evangelhos relacionam sua atuação às palavras de Isaías sobre a voz que prepara o caminho do Senhor (Isaías 40:3; Mateus 3:1–3; Marcos 1:2–4; Lucas 3:2–6). Essa imagem comunica preparação: caminhos tortuosos deveriam ser endireitados, e o povo precisava estar pronto para a visitação de Deus.
+
+João não procurava construir para si uma posição de destaque. Sua missão era preparar o coração das pessoas para reconhecerem aquele que viria depois dele e que era maior do que ele.`,
+verse:"“Arrependei-vos, porque é chegado o reino dos céus.” — Mateus 3:2"
+},
+{
+kicker:"4. Aparência e estilo de vida",
+title:"Uma vida marcada pela simplicidade",
+body:`Marcos descreve João usando roupa de pelos de camelo, um cinto de couro e alimentando-se de gafanhotos e mel silvestre (Marcos 1:6). Essa descrição o apresenta como um profeta cuja vida se distinguia dos padrões de conforto e prestígio.
+
+Sua aparência recorda a descrição de Elias em 2 Reis 1:8, uma associação que também ajuda a compreender a expectativa profética em torno de João. Jesus posteriormente falou dele em relação à promessa da vinda de Elias (Mateus 11:7–14; 17:10–13).
+
+O centro da mensagem de João, porém, não era sua roupa ou dieta. Era o chamado à conversão, à justiça e à preparação para a chegada do Senhor.`,
+verse:"Leitura complementar: 2 Reis 1:8; Mateus 11:7–15."
+},
+{
+kicker:"5. O batismo e o arrependimento",
+title:"Um sinal de mudança de vida",
+body:`Multidões iam até João, confessavam seus pecados e eram batizadas por ele no rio Jordão (Mateus 3:5–6). Seu batismo estava ligado à mensagem de arrependimento: não bastava uma aparência religiosa; era necessário voltar-se para Deus.
+
+Quando alguns líderes religiosos se aproximaram, João os advertiu a produzir frutos dignos de arrependimento. Às pessoas que perguntavam o que deveriam fazer, respondeu com orientações concretas: repartir com quem não tinha, agir com honestidade e não usar a posição para extorquir ou acusar falsamente (Lucas 3:7–14).
+
+O texto bíblico não ensina que o rito, isoladamente, substituía a transformação interior. A resposta à Palavra deveria aparecer em atitudes de misericórdia, integridade e justiça.`,
+verse:"“Produzi, pois, frutos dignos de arrependimento.” — Mateus 3:8"
+},
+{
+kicker:"6. João reconhece Jesus",
+title:"Eis o Cordeiro de Deus",
+body:`Quando Jesus veio ao encontro de João, os Evangelhos registram o batismo de Jesus. Mateus relata que João inicialmente hesitou, mas Jesus lhe disse que convinha cumprir toda a justiça (Mateus 3:13–17).
+
+O Evangelho de João preserva um testemunho marcante do Batista: “Eis o Cordeiro de Deus, que tira o pecado do mundo” (João 1:29). João reconheceu que sua própria missão não era ocupar o lugar de Cristo, mas apresentá-lo ao povo.
+
+Ele também declarou que aquele que vinha depois dele era superior a ele. A imagem do Cordeiro aponta para a obra salvadora de Jesus e se conecta, na leitura cristã, ao tema bíblico do sacrifício e da redenção.
+
+A grandeza de João aparece na clareza com que direcionou a atenção para Jesus, e não para si mesmo.`,
+verse:"Leia Mateus 3:13–17; João 1:19–34."
+},
+{
+kicker:"7. O noivo e o amigo",
+title:"É necessário que ele cresça",
+body:`Quando os discípulos de João perceberam que as pessoas estavam indo até Jesus, João respondeu usando a figura do amigo do noivo. O amigo se alegra ao ouvir a voz do noivo; da mesma forma, João se alegrou porque a missão de Jesus estava sendo reconhecida.
+
+Sua declaração resume uma postura de serviço: “É necessário que ele cresça e que eu diminua” (João 3:30). João compreendia que o ministério não era uma disputa por seguidores. O propósito era testemunhar a verdade e conduzir as pessoas ao Messias.
+
+Essa atitude permanece como exemplo de humildade ministerial. O mensageiro não deve tomar para si a honra que pertence àquele que anuncia.`,
+verse:"“É necessário que ele cresça e que eu diminua.” — João 3:30"
+},
+{
+kicker:"8. A denúncia de Herodes",
+title:"A coragem de falar a verdade",
+body:`João repreendeu Herodes Antipas por causa de sua união com Herodias, mulher de seu irmão, e por outras maldades que Herodes praticava (Marcos 6:17–20; Lucas 3:19–20). Sua fidelidade à mensagem profética colocou-o em conflito com o poder político.
+
+Herodes mandou prender João. Mais tarde, durante uma celebração, a filha de Herodias dançou diante dos convidados, e o rei prometeu conceder-lhe o que pedisse. Orientada por sua mãe, ela pediu a cabeça de João Batista. Herodes, constrangido por seus juramentos e convidados, ordenou a execução (Marcos 6:21–29; Mateus 14:3–12).
+
+Os relatos apresentam a morte de João como consequência de sua denúncia e das intrigas da corte. A narrativa não romantiza o poder: mostra como orgulho, ressentimento e decisões precipitadas podem produzir violência.`,
+verse:"Leitura principal: Marcos 6:17–29; Mateus 14:1–12."
+},
+{
+kicker:"9. Dúvidas e testemunho",
+title:"A pergunta enviada a Jesus",
+body:`Enquanto estava preso, João ouviu falar das obras de Cristo e enviou discípulos para perguntar se Jesus era aquele que havia de vir ou se deveriam esperar outro (Mateus 11:2–6; Lucas 7:18–23).
+
+Jesus respondeu apontando para os sinais de seu ministério: cegos viam, coxos andavam, leprosos eram purificados, surdos ouviam, mortos eram ressuscitados e aos pobres era anunciado o evangelho. A resposta evocava as promessas proféticas de restauração.
+
+O texto não permite transformar esse episódio em uma explicação psicológica definitiva sobre João. Ele registra uma pergunta real e a resposta de Jesus, que dirige os mensageiros às obras que testemunhavam a chegada do Reino.
+
+Em seguida, Jesus falou publicamente da importância de João, reconhecendo-o como mais do que um profeta (Mateus 11:7–15).`,
+verse:"Leia Mateus 11:2–15; Lucas 7:18–28."
+},
+{
+kicker:"10. João Batista na história cristã",
+title:"Seu lugar no testemunho bíblico",
+body:`João Batista é lembrado como profeta, pregador do arrependimento e precursor de Jesus. Seu ministério está registrado nos quatro Evangelhos, embora cada evangelista organize os acontecimentos e destaque aspectos próprios.
+
+Ele liga a esperança profética de Israel ao início do ministério público de Jesus. Sua pregação enfatiza que a espera pelo agir de Deus exige uma resposta concreta: arrependimento, justiça e disposição para receber aquele que vem da parte do Senhor.
+
+João não é apresentado como o Salvador. Ele é a testemunha que aponta para o Salvador. Sua importância está precisamente nessa missão de preparar o caminho e declarar a superioridade de Cristo.`,
+verse:"Textos-chave: Isaías 40:3; Malaquias 3:1; Mateus 3:1–12; João 1:6–8, 19–34."
+},
+{
+kicker:"11. Lições para a vida cristã",
+title:"O legado de João Batista",
+body:`1. Arrependimento verdadeiro produz frutos visíveis: a fé deve transformar atitudes e relacionamentos.
+2. A mensagem de Deus precisa ser anunciada com coragem, mesmo quando confronta pessoas poderosas.
+3. A humildade protege o mensageiro da busca por reconhecimento: Cristo deve ocupar o centro.
+4. A integridade exige coerência entre a mensagem proclamada e a vida praticada.
+5. A missão cristã é testemunhar de Jesus, não construir a própria glória.
+6. Diante de dúvidas e dificuldades, é possível levar perguntas a Deus e considerar o testemunho das Escrituras.
+
+Essas aplicações decorrem dos episódios narrados nos Evangelhos. Elas não eliminam o contexto histórico de João; ajudam o leitor a refletir sobre o significado de seu testemunho para a comunidade cristã.`,
+verse:"“Preparai o caminho do Senhor.” — Marcos 1:3"
+},
+{
+kicker:"12. Cronologia e referências",
+title:"Resumo da vida de João Batista",
+body:`• Anúncio de seu nascimento: Lucas 1:5–25.
+• Nascimento e profecia de Zacarias: Lucas 1:57–80.
+• Pregação no deserto e batismo: Mateus 3:1–12; Marcos 1:1–8; Lucas 3:1–18.
+• Batismo de Jesus: Mateus 3:13–17; Marcos 1:9–11; Lucas 3:21–22.
+• Testemunho sobre Jesus: João 1:19–34; 3:22–30.
+• Prisão e morte: Mateus 14:1–12; Marcos 6:14–29.
+• Pergunta enviada a Jesus e resposta: Mateus 11:2–15; Lucas 7:18–28.
+
+Observação histórica: os Evangelhos não informam datas exatas para o nascimento e a morte de João Batista. As datas precisas não devem ser afirmadas como se fossem fornecidas diretamente pelas Escrituras.`,
+verse:"Fonte primária deste capítulo: os relatos bíblicos, especialmente Mateus, Marcos, Lucas e João."
+},
+{
+kicker:"Encerramento",
+title:"A voz passou; o testemunho permanece",
+body:`João Batista cumpriu sua missão apontando para Jesus Cristo. Sua voz chamou o povo ao arrependimento, sua coragem confrontou a injustiça e sua humildade reconheceu que o Messias era maior do que o mensageiro.
+
+A história de João convida a Igreja a conservar a mesma prioridade: preparar caminhos para que as pessoas ouçam a Palavra, viver de modo coerente com a mensagem e dirigir a honra a Jesus.
+
+O precursor não era a Luz; veio para dar testemunho da Luz. E seu testemunho continua registrado nas Escrituras para que os leitores reconheçam aquele a quem ele anunciou.`,
+verse:"“Este veio para testemunho, para que testificasse da luz.” — João 1:7"
+}
+];
+
+const $ = id => document.getElementById(id);
+let current = 0;
+function plainText(page){
+  return [page.title, page.body, page.verse].filter(Boolean).join("\n\n").replace(/<[^>]*>/g,"");
+}
+function render(direction=""){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").replaceChildren();
+  const parts = p.body.split("\n\n");
+  parts.forEach(part => {
+    const para = document.createElement("p");
+    para.textContent = part;
+    $("pageBody").appendChild(para);
+  });
+  if(p.verse){
+    const quote = document.createElement("blockquote");
+    quote.className = "verse";
+    quote.textContent = p.verse;
+    $("pageBody").appendChild(quote);
+  }
+  $("pageNumber").textContent = String(current + 1);
+  $("pageText").textContent = plainText(p);
+  $("status").textContent = `Página ${current + 1} de ${pages.length}`;
+  $("progress").style.width = `${((current + 1) / pages.length) * 100}%`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length - 1;
+  if(direction){
+    const book = $("book");
+    book.classList.remove("turn-next","turn-prev");
+    void book.offsetWidth;
+    book.classList.add(direction === "next" ? "turn-next" : "turn-prev");
+  }
+}
+$("prev").addEventListener("click",()=>{if(current>0){current--;speechSynthesis?.cancel();render("prev")}});
+$("next").addEventListener("click",()=>{if(current<pages.length-1){current++;speechSynthesis?.cancel();render("next")}});
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não é compatível com este navegador.");return}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(plainText(pages[current]));
+  utterance.lang = "pt-BR"; utterance.rate = 0.92;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window)speechSynthesis.cancel()});
+let touchStartX = 0;
+$("book").addEventListener("touchstart",e=>{touchStartX=e.changedTouches[0].screenX},{passive:true});
+$("book").addEventListener("touchend",e=>{
+  const dx=e.changedTouches[0].screenX-touchStartX;
+  if(Math.abs(dx)>55){if(dx<0 && current<pages.length-1){current++;render("next")}else if(dx>0 && current>0){current--;render("prev")}}
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight" && current<pages.length-1){current++;render("next")}
+  if(e.key==="ArrowLeft" && current>0){current--;render("prev")}
+});
+render();
+</script>
+</body>
+</html>

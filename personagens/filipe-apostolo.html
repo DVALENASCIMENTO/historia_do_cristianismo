@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Filipe, apóstolo: vida, chamado, ministério e importância na história do cristianismo, à luz do Novo Testamento.">
+<title>Flipbook — História do Cristianismo: Filipe, apóstolo</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font:.8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo</h1>
+<p class="subtitle">Filipe, apóstolo · Um dos doze escolhidos por Jesus</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+{
+kicker:"História do Cristianismo",
+title:"Filipe, apóstolo",
+body:`Filipe foi um dos doze apóstolos escolhidos por Jesus. O Evangelho segundo João registra que Jesus o encontrou e lhe disse: “Segue-me”. Filipe era de Betsaida, a cidade de André e Pedro.
+
+Nos relatos bíblicos, Filipe aparece em momentos importantes: chama Natanael para conhecer Jesus, conversa com o Mestre sobre como alimentar uma multidão e participa do episódio em que alguns gregos desejam ver Jesus.
+
+A Bíblia também preserva uma pergunta de Filipe durante a última ceia, quando pede a Jesus que lhes mostre o Pai. A resposta de Cristo conduz os discípulos a refletir sobre a relação entre Jesus e o Pai.`,
+verse:"“Segue-me.” — João 1:43"
+},
+{
+kicker:"1. Identificação e contexto",
+title:"Quem foi Filipe?",
+body:`Filipe foi um dos doze apóstolos. O Evangelho segundo João informa que ele era de Betsaida, a mesma cidade de André e Pedro.
+
+É importante distingui-lo de outros personagens bíblicos chamados Filipe, especialmente Filipe, um dos sete escolhidos em Atos 6 e evangelista em Atos 8. Embora tenham o mesmo nome, não se deve confundir automaticamente o apóstolo com o personagem de Atos.
+
+O Novo Testamento não informa a data de nascimento do apóstolo nem apresenta uma biografia completa de sua vida.`,
+verse:"Leitura principal: João 1:43–44; Mateus 10:2–4."
+},
+{
+kicker:"2. O chamado",
+title:"Jesus o chama para segui-lo",
+body:`João relata que Jesus decidiu partir para a Galileia, encontrou Filipe e lhe disse: “Segue-me”. O texto apresenta o chamado de forma breve, sem detalhar toda a conversa entre Jesus e Filipe.
+
+Depois desse encontro, Filipe passa a aparecer entre as pessoas que seguem Jesus. O episódio marca o início de sua trajetória como discípulo e apóstolo.
+
+A narrativa destaca a iniciativa de Jesus ao chamar pessoas para acompanhá-lo e participar de seu ministério.`,
+verse:"Leitura: João 1:43–44."
+},
+{
+kicker:"3. Filipe e Natanael",
+title:"“Vem e vê”",
+body:`Depois de encontrar Jesus, Filipe procurou Natanael e lhe contou que havia encontrado aquele de quem Moisés e os profetas escreveram: Jesus de Nazaré, filho de José.
+
+Natanael questionou se de Nazaré poderia sair alguma coisa boa. Filipe não entrou numa longa discussão; respondeu com um convite: “Vem e vê”.
+
+O episódio mostra Filipe compartilhando sua descoberta e convidando outra pessoa a encontrar Jesus pessoalmente. A conversa continua com o encontro de Natanael com o Mestre.`,
+verse:"“Vem e vê.” — João 1:46"
+},
+{
+kicker:"4. Filipe entre os Doze",
+title:"Um apóstolo escolhido",
+body:`Filipe aparece nas listas dos doze apóstolos em Mateus, Marcos, Lucas e Atos. A ordem dos nomes varia, mas sua inclusão no grupo é clara.
+
+Os Evangelhos não registram todas as tarefas que Filipe realizou durante o ministério de Jesus. Os episódios preservados, porém, permitem observar como ele participou de conversas e acontecimentos importantes.
+
+Ao estudar Filipe, é necessário distinguir o que os textos afirmam diretamente de tradições posteriores sobre sua atividade e seu destino.`,
+verse:"Leitura: Mateus 10:2–4; Marcos 3:16–19; Lucas 6:13–16; Atos 1:13."
+},
+{
+kicker:"5. A multidão faminta",
+title:"Jesus pergunta a Filipe",
+body:`No relato de João sobre a alimentação da multidão, Jesus pergunta a Filipe onde poderiam comprar pão para alimentar aquelas pessoas. O Evangelho explica que Jesus fazia a pergunta para prová-lo, pois sabia o que iria fazer.
+
+Filipe calcula que uma grande quantia de dinheiro não seria suficiente para que cada pessoa recebesse um pouco. André, então, menciona um menino que tinha cinco pães de cevada e dois peixinhos.
+
+O sinal realizado por Jesus mostra a insuficiência dos recursos humanos diante da multidão e destaca a ação do próprio Cristo.`,
+verse:"Leitura: João 6:1–13."
+},
+{
+kicker:"6. Alguns gregos procuram Jesus",
+title:"Filipe e André levam o pedido ao Mestre",
+body:`João relata que alguns gregos que haviam subido a Jerusalém para a festa procuraram Filipe e disseram que desejavam ver Jesus. Filipe falou com André, e os dois levaram o pedido a Jesus.
+
+O texto não detalha toda a conversa entre os discípulos e os visitantes, mas registra que o desejo deles chegou ao conhecimento do Mestre.
+
+O episódio acontece quando Jesus fala sobre sua hora e sobre o significado de sua morte. A presença de visitantes gregos contribui para o contexto da missão de Jesus e do alcance de sua obra.`,
+verse:"Leitura: João 12:20–26."
+},
+{
+kicker:"7. Filipe na última ceia",
+title:"“Mostra-nos o Pai”",
+body:`Durante a conversa de Jesus com os discípulos antes de sua prisão, Filipe lhe pediu: “Senhor, mostra-nos o Pai, o que nos basta”.
+
+Jesus respondeu que quem o havia visto também havia visto o Pai e perguntou a Filipe se, depois de tanto tempo com eles, ainda não o conhecia. A resposta enfatiza a relação singular entre Jesus e o Pai.
+
+O diálogo revela que os discípulos ainda precisavam compreender plenamente o significado das palavras e da identidade de Jesus. O Mestre continuou ensinando-os naquela ocasião.`,
+verse:"Leitura: João 14:1–11."
+},
+{
+kicker:"8. O que Filipe compreendeu?",
+title:"Aprender com as palavras de Jesus",
+body:`A pergunta de Filipe em João 14 não deve ser tratada como prova de que ele rejeitava Jesus. O texto mostra um discípulo que faz uma pergunta e recebe uma explicação do Mestre.
+
+Jesus aponta para suas palavras e obras como testemunho de sua relação com o Pai. O restante do discurso continua a preparar os discípulos para sua partida e para a missão que teriam.
+
+O episódio lembra que o discipulado envolve escutar, perguntar e aprender com Jesus, sem transformar uma dúvida registrada no texto em uma descrição completa do caráter do apóstolo.`,
+verse:"Leitura: João 14:7–14."
+},
+{
+kicker:"9. Filipe depois da ressurreição",
+title:"Entre os apóstolos reunidos",
+body:`Atos 1 inclui Filipe na lista dos apóstolos que se reuniram em Jerusalém depois da ascensão de Jesus. Eles perseveravam em oração com outros discípulos enquanto aguardavam o cumprimento da promessa do Espírito Santo.
+
+A referência confirma sua presença na comunidade apostólica no período inicial da Igreja. O livro de Atos não fornece, nesse trecho, uma narrativa detalhada das atividades individuais de Filipe.
+
+Essa informação deve ser distinguida dos episódios de Atos que descrevem outro personagem chamado Filipe, conhecido como evangelista.`,
+verse:"Leitura: Atos 1:12–14."
+},
+{
+kicker:"10. Filipe, o apóstolo e Filipe, o evangelista",
+title:"Dois personagens que não devem ser confundidos",
+body:`O Novo Testamento menciona Filipe, um dos doze apóstolos, e também Filipe, um dos sete escolhidos em Atos 6, que depois anuncia o evangelho em Samaria e encontra o eunuco etíope em Atos 8.
+
+Atos 21:8 chama este segundo personagem de “Filipe, o evangelista, que era um dos sete”. O texto o identifica pela função e pelo grupo ao qual pertencia.
+
+Por isso, a narrativa da evangelização de Samaria e do batismo do etíope deve ser atribuída a Filipe, o evangelista, conforme Atos, e não automaticamente ao apóstolo Filipe.`,
+verse:"Leitura: Atos 6:1–6; 8:4–40; 21:8."
+},
+{
+kicker:"11. Tradições sobre Filipe",
+title:"Bíblia e memória cristã",
+body:`Tradições cristãs posteriores atribuem a Filipe atividades missionárias e acontecimentos relacionados à sua morte. Os detalhes variam entre as fontes e não são apresentados de forma completa no Novo Testamento.
+
+Ao estudar essas narrativas, é importante informar quando uma afirmação vem de uma tradição posterior, em vez de apresentá-la como relato bíblico direto.
+
+As referências bíblicas mais claras sobre o apóstolo encontram-se nos Evangelhos, especialmente em João, nas listas dos Doze e na relação dos apóstolos reunidos em Jerusalém em Atos 1.`,
+verse:"Referências centrais: João 1:43–46; 6:5–7; 12:20–22; 14:8–11; Atos 1:13."
+},
+{
+kicker:"12. Filipe na história do cristianismo",
+title:"A memória de um dos Doze",
+body:`Filipe ocupa lugar nas listas apostólicas e nos relatos em que Jesus conversa com seus discípulos. Ao longo da história cristã, comunidades desenvolveram tradições e formas de veneração ligadas ao seu nome.
+
+Essas tradições fazem parte da história da recepção do apóstolo, mas não devem ser confundidas com os poucos episódios biográficos registrados diretamente no Novo Testamento.
+
+O estudo histórico responsável considera tanto a influência da memória cristã quanto os limites das fontes disponíveis.`,
+verse:"Leitura complementar: Mateus 10:2–4; João 1:43–46; Atos 1:13."
+},
+{
+kicker:"13. Lições para a vida cristã",
+title:"O que aprendemos com Filipe?",
+body:`1. Responder ao chamado: Jesus encontrou Filipe e o convidou a segui-lo.
+2. Convidar outros a conhecer Cristo: Filipe chamou Natanael com as palavras “vem e vê”.
+3. Apresentar as limitações com honestidade: diante da multidão, Filipe avaliou os recursos disponíveis.
+4. Continuar aprendendo: sua pergunta a Jesus na última ceia recebeu uma resposta que aprofundava o entendimento dos discípulos.
+5. Permanecer na comunidade: Filipe aparece entre os apóstolos reunidos em Jerusalém.
+
+Essas lições se baseiam nos episódios bíblicos, sem atribuir ao apóstolo fatos que as Escrituras não registram.`,
+verse:"Leitura: João 1:43–46; 6:5–13; 14:8–11; Atos 1:13–14."
+},
+{
+kicker:"14. Cronologia e referências",
+title:"Percurso bíblico de Filipe",
+body:`• Chamado por Jesus na Galileia: João 1:43–44.
+• Convida Natanael a conhecer Jesus: João 1:45–51.
+• Incluído entre os Doze: Mateus 10:2–4; Lucas 6:13–16.
+• Questionado por Jesus sobre a alimentação da multidão: João 6:5–7.
+• Procurado por gregos que desejavam ver Jesus: João 12:20–22.
+• Pede a Jesus que mostre o Pai: João 14:8–11.
+• Reunido com os apóstolos em Jerusalém: Atos 1:13.
+
+Atos 8 descreve Filipe, o evangelista, um personagem distinto nas identificações do próprio livro. A data de nascimento e os detalhes finais da vida do apóstolo não são informados nos relatos bíblicos.`,
+verse:"Fonte principal: Novo Testamento."
+},
+{
+kicker:"Encerramento",
+title:"Um discípulo que convidou outros a ver Jesus",
+body:`Filipe, apóstolo, é lembrado pelo chamado de Jesus e por episódios em que compartilha sua descoberta, participa de conversas importantes e aprende com o Mestre.
+
+Ao convidar Natanael com as palavras “vem e vê”, Filipe oferece um retrato simples de testemunho: levar alguém até a oportunidade de conhecer Jesus. Em outros momentos, suas perguntas revelam que o discipulado também é um caminho de compreensão e aprendizado.
+
+Sua história deve ser apresentada a partir das fontes bíblicas, distinguindo o apóstolo Filipe de Filipe, o evangelista, e separando os relatos do Novo Testamento das tradições posteriores.`,
+verse:"“Vem e vê.” — João 1:46"
+}
+];
+
+let current = 0;
+const $ = id => document.getElementById(id);
+const book = $("book");
+function render(){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").textContent = p.body;
+  const quote = document.createElement("div");
+  quote.className = "verse";
+  quote.textContent = p.verse;
+  $("pageBody").appendChild(quote);
+  $("pageNumber").textContent = `${current+1} / ${pages.length}`;
+  $("status").textContent = `Página ${current+1} de ${pages.length}`;
+  $("progress").style.width = `${((current+1)/pages.length)*100}%`;
+  $("pageText").textContent = `${p.title}\n\n${p.body}\n\n${p.verse}`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length-1;
+}
+function go(step){
+  const next = current + step;
+  if(next < 0 || next >= pages.length) return;
+  current = next;
+  book.classList.remove("turn-next","turn-prev");
+  void book.offsetWidth;
+  book.classList.add(step > 0 ? "turn-next" : "turn-prev");
+  render();
+}
+$("prev").addEventListener("click",()=>go(-1));
+$("next").addEventListener("click",()=>go(1));
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não está disponível neste navegador.");return;}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance($("pageText").textContent);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.94;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window) speechSynthesis.cancel();});
+let startX = 0;
+book.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX;},{passive:true});
+book.addEventListener("touchend",e=>{
+  const diff=e.changedTouches[0].screenX-startX;
+  if(Math.abs(diff)>55) go(diff<0?1:-1);
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+render();
+</script>
+</body>
+</html>

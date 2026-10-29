@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Flipbook de estudo bíblico sobre Bartolomeu, um dos Doze apóstolos de Jesus.">
+<title>Bartolomeu, Apóstolo — História do Cristianismo</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font:.8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo</h1>
+<p class="subtitle">Bartolomeu, apóstolo · Um dos doze escolhidos por Jesus</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+  {
+    "kicker": "APÓSTOLO",
+    "title": "Bartolomeu, um dos Doze",
+    "body": "Bartolomeu aparece nas listas dos doze apóstolos escolhidos por Jesus. Os Evangelhos sinóticos o mencionam entre os discípulos enviados para anunciar o Reino de Deus. Seu nome está associado à memória da primeira comunidade apostólica.",
+    "verse": "Mateus 10:2–4; Marcos 3:16–19; Lucas 6:13–16"
+  },
+  {
+    "kicker": "BASE BÍBLICA",
+    "title": "O que sabemos pelas Escrituras",
+    "body": "O Novo Testamento oferece poucas informações individuais sobre Bartolomeu. Ele é identificado principalmente pelas listas dos Doze. Por isso, é importante distinguir o que o texto bíblico afirma diretamente das tradições posteriores sobre sua vida.",
+    "verse": "Mateus 10:2–4; Atos 1:13"
+  },
+  {
+    "kicker": "IDENTIFICAÇÃO TRADICIONAL",
+    "title": "Bartolomeu e Natanael",
+    "body": "Uma tradição cristã antiga identifica Bartolomeu com Natanael, personagem apresentado no Evangelho de João. Essa identificação é comum na tradição da Igreja, mas João nunca chama Natanael de Bartolomeu; por isso, a equivalência não pode ser afirmada como certeza explícita do texto bíblico.",
+    "verse": "João 1:45–51; João 21:2"
+  },
+  {
+    "kicker": "O ENCONTRO",
+    "title": "A apresentação de Natanael",
+    "body": "No Evangelho de João, Filipe encontra Natanael e lhe diz que encontrou aquele de quem Moisés e os profetas escreveram: Jesus de Nazaré. Natanael reage com ceticismo, perguntando se de Nazaré poderia sair algo bom. Filipe responde com um convite simples: “Vem e vê”.",
+    "verse": "João 1:45–46"
+  },
+  {
+    "kicker": "CONFISSÃO",
+    "title": "Um encontro pessoal com Jesus",
+    "body": "Quando Natanael se aproxima, Jesus declara que nele não há dolo. Natanael pergunta como Jesus o conhece. A resposta de Jesus leva Natanael a confessá-lo como Filho de Deus e Rei de Israel. Essa cena pertence à história de Natanael no Evangelho de João; sua associação com Bartolomeu permanece uma identificação tradicional.",
+    "verse": "João 1:47–49"
+  },
+  {
+    "kicker": "PROMESSA",
+    "title": "Jesus anuncia coisas maiores",
+    "body": "Jesus promete a Natanael que ele verá coisas maiores e anuncia a imagem do céu aberto e dos anjos de Deus subindo e descendo sobre o Filho do Homem. O encontro aponta para a revelação da identidade de Jesus e para a compreensão progressiva dos discípulos.",
+    "verse": "João 1:50–51"
+  },
+  {
+    "kicker": "O CHAMADO",
+    "title": "Chamado para estar com Jesus",
+    "body": "Os apóstolos não foram apresentados apenas como mensageiros; foram chamados para acompanhar Jesus e participar de sua missão. Bartolomeu aparece entre os Doze, o grupo que testemunhou o ministério de Cristo e recebeu a tarefa de anunciar o evangelho.",
+    "verse": "Marcos 3:13–15; Mateus 10:1–4"
+  },
+  {
+    "kicker": "A MISSÃO",
+    "title": "Enviado com os Doze",
+    "body": "Jesus concedeu autoridade aos Doze e os enviou a proclamar que o Reino dos Céus estava próximo. As instruções incluíam anunciar a mensagem, cuidar dos necessitados e depender da provisão de Deus. O texto não registra separadamente as ações de Bartolomeu durante essa missão.",
+    "verse": "Mateus 10:5–8"
+  },
+  {
+    "kicker": "OS DOZE",
+    "title": "A lista dos apóstolos",
+    "body": "Bartolomeu é citado nas listas apostólicas ao lado de outros discípulos. A ordem dos nomes varia entre os Evangelhos, mas sua presença nessas listas o situa no círculo dos Doze. O texto bíblico não fornece detalhes sobre sua família, profissão ou local de nascimento.",
+    "verse": "Marcos 3:16–19; Lucas 6:14–16"
+  },
+  {
+    "kicker": "EM JERUSALÉM",
+    "title": "Bartolomeu após a ascensão",
+    "body": "Atos registra os apóstolos reunidos em Jerusalém depois da ascensão de Jesus e inclui Bartolomeu na lista. O grupo perseverava unido em oração, aguardando o cumprimento da promessa do Pai. Essa é uma das últimas referências bíblicas nominais a Bartolomeu.",
+    "verse": "Atos 1:12–14"
+  },
+  {
+    "kicker": "TESTEMUNHO",
+    "title": "A missão apostólica",
+    "body": "A missão dos apóstolos continuou após a ressurreição e a descida do Espírito Santo. O livro de Atos narra a expansão do testemunho cristão, mas não acompanha individualmente todas as viagens de cada apóstolo. Por isso, não é possível reconstruir com segurança o itinerário de Bartolomeu apenas com o relato bíblico.",
+    "verse": "Atos 1:8; Atos 2:1–4"
+  },
+  {
+    "kicker": "TRADIÇÕES",
+    "title": "Relatos sobre suas viagens",
+    "body": "Tradições cristãs posteriores associam Bartolomeu à evangelização de regiões como a Índia, a Armênia e outras áreas do Oriente. Os relatos divergem e foram registrados muito depois dos acontecimentos. Devem ser apresentados como tradições históricas, não como informações detalhadas fornecidas pelo Novo Testamento.",
+    "verse": "Tradições cristãs posteriores; comparar com Atos 1:8"
+  },
+  {
+    "kicker": "MARTÍRIO",
+    "title": "A tradição de sua morte",
+    "body": "Diversas tradições afirmam que Bartolomeu morreu como mártir, e algumas descrevem sua morte por esfolamento. Entretanto, os textos bíblicos não relatam como ele morreu. Os pormenores pertencem à tradição posterior e não podem ser confirmados diretamente pelas Escrituras.",
+    "verse": "O Novo Testamento não descreve a morte de Bartolomeu"
+  },
+  {
+    "kicker": "ESTUDO RESPONSÁVEL",
+    "title": "O cuidado com a história",
+    "body": "Estudar Bartolomeu exige separar três níveis: o que a Bíblia declara, o que a tradição cristã preservou e o que permanece desconhecido. Essa distinção não diminui a importância do apóstolo; ela evita transformar hipóteses ou relatos tardios em certezas bíblicas.",
+    "verse": "Atos 1:13; 2 Timóteo 3:16–17"
+  },
+  {
+    "kicker": "APLICAÇÃO",
+    "title": "Lições para os discípulos",
+    "body": "A presença de Bartolomeu entre os Doze recorda que Jesus chamou pessoas para compor uma comunidade de testemunhas. Mesmo quando os registros não detalham a história individual de cada discípulo, a missão coletiva permanece clara: anunciar Cristo e testemunhar o que Deus realizou.",
+    "verse": "Mateus 28:18–20; Atos 1:8"
+  },
+  {
+    "kicker": "REFLEXÃO",
+    "title": "Fidelidade e verdade",
+    "body": "O estudo de Bartolomeu convida o leitor a valorizar a fidelidade sem inventar detalhes. A vida cristã é chamada a testemunhar com verdade, examinar as Escrituras e reconhecer os limites do que se sabe. A missão não depende de fama, mas de obediência a Cristo.",
+    "verse": "João 17:17; 1 Pedro 3:15"
+  },
+  {
+    "kicker": "VERSÍCULO",
+    "title": "“Vem e vê”",
+    "body": "O convite de Filipe a Natanael resume uma atitude essencial do testemunho cristão: conduzir as pessoas a conhecer Jesus, em vez de exigir que aceitem uma afirmação sem examinar. A frase pertence ao relato de Natanael e é incluída aqui por causa da identificação tradicional entre Natanael e Bartolomeu.",
+    "verse": "João 1:46"
+  },
+  {
+    "kicker": "CONCLUSÃO",
+    "title": "O testemunho de Bartolomeu",
+    "body": "Bartolomeu é lembrado nas Escrituras como um dos Doze apóstolos. A tradição frequentemente o identifica com Natanael e preserva relatos de sua atividade missionária e de seu martírio, mas esses detalhes não são narrados diretamente na Bíblia. O estudo responsável mantém essa distinção e concentra-se no testemunho apostólico de Jesus Cristo.",
+    "verse": "Mateus 10:2–4; Atos 1:13"
+  }
+];
+
+let current = 0;
+const $ = id => document.getElementById(id);
+const book = $("book");
+function render(){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").textContent = p.body;
+  const quote = document.createElement("div");
+  quote.className = "verse";
+  quote.textContent = p.verse;
+  $("pageBody").appendChild(quote);
+  $("pageNumber").textContent = `${current+1} / ${pages.length}`;
+  $("status").textContent = `Página ${current+1} de ${pages.length}`;
+  $("progress").style.width = `${((current+1)/pages.length)*100}%`;
+  $("pageText").textContent = `${p.title}\n\n${p.body}\n\n${p.verse}`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length-1;
+}
+function go(step){
+  const next = current + step;
+  if(next < 0 || next >= pages.length) return;
+  current = next;
+  book.classList.remove("turn-next","turn-prev");
+  void book.offsetWidth;
+  book.classList.add(step > 0 ? "turn-next" : "turn-prev");
+  render();
+}
+$("prev").addEventListener("click",()=>go(-1));
+$("next").addEventListener("click",()=>go(1));
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não está disponível neste navegador.");return;}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance($("pageText").textContent);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.94;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window) speechSynthesis.cancel();});
+let startX = 0;
+book.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX;},{passive:true});
+book.addEventListener("touchend",e=>{
+  const diff=e.changedTouches[0].screenX-startX;
+  if(Math.abs(diff)>55) go(diff<0?1:-1);
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+render();
+</script>
+</body>
+</html>

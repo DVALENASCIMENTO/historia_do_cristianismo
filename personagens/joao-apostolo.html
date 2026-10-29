@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="João, apóstolo: vida, chamado, ministério e importância na história do cristianismo, à luz do Novo Testamento.">
+<title>Flipbook — História do Cristianismo: João, apóstolo</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font:.8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo</h1>
+<p class="subtitle">João, apóstolo · Filho de Zebedeu e irmão de Tiago</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+{
+kicker:"História do Cristianismo",
+title:"João, apóstolo",
+body:`João, filho de Zebedeu e irmão de Tiago, foi um dos doze apóstolos escolhidos por Jesus. Os Evangelhos o apresentam entre os pescadores da Galileia que deixaram o trabalho para seguir o Mestre.
+
+Junto com Pedro e Tiago, João acompanhou Jesus em momentos importantes, incluindo a ressurreição da filha de Jairo, a transfiguração e a oração no Getsêmani. Nos relatos do Evangelho segundo João, aparece também um discípulo descrito como aquele a quem Jesus amava, mas o próprio texto não o identifica nominalmente nessa expressão.
+
+A trajetória de João deve ser estudada distinguindo o que os textos bíblicos afirmam diretamente das identificações e tradições desenvolvidas ao longo da história cristã.`,
+verse:"“E seguiram-no.” — Mateus 4:22"
+},
+{
+kicker:"1. Identificação e família",
+title:"Quem foi João?",
+body:`João era filho de Zebedeu e irmão de Tiago. Os dois trabalhavam como pescadores na Galileia e foram chamados por Jesus enquanto estavam no barco com seu pai.
+
+Nos Evangelhos, João aparece entre os Doze e, em diversas passagens, junto com Pedro e Tiago. Essa proximidade narrativa permite acompanhar alguns momentos de seu discipulado, embora não forneça uma biografia completa.
+
+A Bíblia não informa a data de nascimento de João. Também é importante distinguir João, filho de Zebedeu, de outras pessoas chamadas João no Novo Testamento, como João Batista.`,
+verse:"Leitura principal: Mateus 4:21–22; Marcos 1:19–20."
+},
+{
+kicker:"2. O chamado de Jesus",
+title:"De pescador a discípulo",
+body:`Mateus e Marcos relatam que Jesus chamou Tiago e João enquanto eles consertavam as redes no barco com Zebedeu, seu pai. Os irmãos deixaram o barco e o pai para seguir Jesus.
+
+O texto destaca a prontidão com que responderam ao chamado. Não explica todos os detalhes da decisão nem descreve as consequências para a atividade pesqueira da família; seu foco é a resposta dos irmãos à convocação de Jesus.
+
+A partir desse momento, João passa a integrar o grupo de discípulos que acompanha o ministério do Mestre.`,
+verse:"Leitura: Mateus 4:21–22; Marcos 1:19–20."
+},
+{
+kicker:"3. João entre os Doze",
+title:"Um dos apóstolos escolhidos",
+body:`João foi escolhido por Jesus para fazer parte do grupo dos doze apóstolos. Seu nome aparece nas listas apostólicas dos Evangelhos e em Atos, embora a ordem dos nomes varie.
+
+Os relatos mostram que ele acompanhou Jesus durante o ministério público e esteve presente em episódios específicos. Contudo, não registram todas as conversas, tarefas ou deslocamentos de João.
+
+Uma apresentação histórica responsável reconhece sua importância no grupo apostólico sem inventar detalhes biográficos que os textos não preservam.`,
+verse:"Leitura: Mateus 10:2–4; Marcos 3:16–19; Lucas 6:13–16; Atos 1:13."
+},
+{
+kicker:"4. Os filhos do trovão",
+title:"Um nome dado por Jesus",
+body:`Marcos informa que Jesus deu a Tiago e João o nome Boanerges, traduzido no próprio Evangelho como “filhos do trovão”. O texto registra o apelido, mas não explica de forma definitiva todos os seus sentidos.
+
+Em Lucas, os dois irmãos aparecem querendo que desça fogo do céu sobre uma aldeia samaritana que não recebeu Jesus. O Mestre os repreende.
+
+Esses episódios lembram que os discípulos também precisavam ser ensinados e corrigidos. O chamado para seguir Jesus envolvia transformação de atitudes e aprendizado do modo de agir do Mestre.`,
+verse:"Leitura: Marcos 3:17; Lucas 9:51–56."
+},
+{
+kicker:"5. João, Pedro e Tiago",
+title:"Testemunhas de momentos especiais",
+body:`Em algumas ocasiões, Jesus levou consigo Pedro, Tiago e João. Os três presenciaram a ressurreição da filha de Jairo, a transfiguração e a oração de Jesus no Getsêmani.
+
+Os relatos não explicam todos os motivos pelos quais esses discípulos foram escolhidos para acompanhá-lo nesses momentos. Por isso, é melhor observar o significado de cada episódio dentro de sua própria narrativa.
+
+A presença de João nesses acontecimentos mostra que ele acompanhou de perto partes importantes do ministério de Jesus.`,
+verse:"Leitura: Marcos 5:37–43; 9:2–8; 14:32–42."
+},
+{
+kicker:"6. A filha de Jairo",
+title:"João presencia um sinal",
+body:`Quando Jairo pediu ajuda para sua filha, Jesus permitiu que Pedro, Tiago e João o acompanhassem até a casa. Ali, Jesus tomou a menina pela mão e ela se levantou.
+
+João estava presente num episódio que revela a autoridade de Jesus diante da morte. O centro do relato é a ação de Cristo, não o mérito individual dos discípulos que o acompanharam.
+
+A passagem faz parte dos relatos evangélicos dos sinais realizados por Jesus durante seu ministério.`,
+verse:"Leitura: Marcos 5:21–43; Lucas 8:40–56."
+},
+{
+kicker:"7. A transfiguração",
+title:"João vê a glória de Jesus",
+body:`João acompanhou Jesus, junto com Pedro e Tiago, ao monte onde ocorreu a transfiguração. Os Evangelhos descrevem a aparência de Jesus transformada e mencionam Moisés e Elias conversando com ele.
+
+Uma voz da nuvem declarou que Jesus era o Filho amado e ordenou que os discípulos o ouvissem. O episódio aponta para a identidade e a autoridade de Cristo.
+
+Os relatos bíblicos não nomeiam o monte da transfiguração. Identificações tradicionais devem ser distinguidas da informação explicitamente fornecida pelo texto.`,
+verse:"“Este é o meu Filho amado; a ele ouvi.” — Marcos 9:7"
+},
+{
+kicker:"8. João e o serviço",
+title:"A grandeza segundo Jesus",
+body:`Marcos relata que Tiago e João pediram posições de honra junto de Jesus. A resposta do Mestre corrigiu a maneira como eles compreendiam a grandeza.
+
+Jesus ensinou que quem deseja ser grande entre seus discípulos deve servir, e quem deseja ser o primeiro deve ser servo de todos. O próprio Filho do Homem veio para servir e dar sua vida em resgate por muitos.
+
+O episódio mostra que a proximidade com Jesus não dispensava os apóstolos de aprender humildade. O discipulado exigia uma mudança na compreensão de poder e honra.`,
+verse:"Leitura: Marcos 10:35–45."
+},
+{
+kicker:"9. João no monte das Oliveiras",
+title:"Ouvindo sobre o futuro",
+body:`Marcos registra que Pedro, Tiago, João e André perguntaram a Jesus, em particular, sobre a destruição do templo e os acontecimentos futuros.
+
+Jesus advertiu os discípulos contra o engano e ensinou sobre vigilância e perseverança. As interpretações cristãs divergem sobre alguns detalhes proféticos do discurso, por isso é importante considerar o contexto e distinguir o texto de suas interpretações.
+
+João aparece aqui como um dos discípulos que escutaram diretamente essas instruções.`,
+verse:"Leitura: Marcos 13:3–13, 32–37."
+},
+{
+kicker:"10. O discípulo amado",
+title:"Uma expressão no Evangelho de João",
+body:`O Evangelho segundo João usa a expressão “o discípulo a quem Jesus amava” em diferentes cenas, incluindo a ceia, a crucificação e episódios após a ressurreição. O texto não apresenta o nome desse discípulo diretamente nessas passagens.
+
+A tradição cristã frequentemente identifica esse discípulo com João, filho de Zebedeu. Entretanto, é importante explicar que essa identificação é uma interpretação tradicional, e não uma identificação nominal explícita em cada passagem.
+
+A leitura cuidadosa permite reconhecer a importância da figura narrativa sem apagar a distinção entre o que o Evangelho diz e a forma como foi interpretado posteriormente.`,
+verse:"Leitura: João 13:21–26; 19:25–27; 20:1–10; 21:20–24."
+},
+{
+kicker:"11. João junto à cruz",
+title:"O relato da crucificação",
+body:`No Evangelho segundo João, Jesus, na cruz, dirige palavras à sua mãe e ao discípulo a quem amava, confiando um ao outro aos seus cuidados. O discípulo é descrito como presente junto à cruz.
+
+A passagem não nomeia diretamente esse discípulo no trecho. A tradição cristã costuma identificá-lo com o apóstolo João, mas uma exposição bíblica cuidadosa deve deixar clara essa distinção.
+
+O episódio destaca o cuidado de Jesus e a relação entre as pessoas presentes no momento de sua crucificação.`,
+verse:"Leitura: João 19:25–27."
+},
+{
+kicker:"12. João e a ressurreição",
+title:"O túmulo vazio",
+body:`João 20 narra que Maria Madalena foi ao túmulo e avisou Pedro e o outro discípulo. Os dois correram até lá. O relato chama esse segundo homem de “outro discípulo” e, mais adiante, descreve sua reação ao ver os sinais deixados no túmulo.
+
+A identificação desse discípulo com João é tradicional, mas o trecho não lhe dá o nome diretamente. O texto conduz o leitor ao testemunho da ressurreição de Jesus.
+
+A fé cristã se apoia no anúncio de que Jesus ressuscitou, tema central da pregação apostólica.`,
+verse:"Leitura: João 20:1–10."
+},
+{
+kicker:"13. João na Igreja primitiva",
+title:"Com os apóstolos em Jerusalém",
+body:`Atos 1 inclui João entre os apóstolos reunidos em Jerusalém depois da ascensão de Jesus. Mais adiante, Atos apresenta João junto com Pedro em episódios relacionados ao testemunho público sobre Jesus.
+
+Essas referências mostram João participando da comunidade apostólica e de sua missão. O livro de Atos, porém, não oferece uma biografia completa de suas atividades nem descreve todos os seus deslocamentos.
+
+É possível afirmar o que os textos registram, mantendo cautela diante de detalhes que dependem de tradições posteriores.`,
+verse:"Leitura: Atos 1:12–14; 3:1–11; 4:1–22; 8:14–17."
+},
+{
+kicker:"14. Os escritos associados a João",
+title:"Evangelho, cartas e Apocalipse",
+body:`A tradição cristã antiga associa a João, apóstolo, o quarto Evangelho, três cartas e o livro do Apocalipse. A identificação e a autoria desses escritos são assuntos estudados por historiadores e especialistas, e há debates acadêmicos sobre a relação entre eles e o apóstolo.
+
+O próprio texto do Evangelho segundo João não apresenta o nome do autor no formato de uma assinatura moderna. O Apocalipse identifica seu autor como João, mas não esclarece em todos os detalhes sua relação com o apóstolo filho de Zebedeu.
+
+Por isso, é útil distinguir a atribuição tradicional das discussões históricas e literárias sobre autoria.`,
+verse:"Leitura: João 21:24; 1 João 1:1–4; Apocalipse 1:1–2, 9."
+},
+{
+kicker:"15. Tradições sobre seus últimos anos",
+title:"Memória e história",
+body:`Tradições cristãs posteriores associam João a um ministério prolongado em Éfeso e a acontecimentos ligados ao fim de sua vida. Os detalhes variam conforme as fontes e não são narrados de forma completa no Novo Testamento.
+
+Ao estudar essas tradições, é importante identificar sua origem e não apresentá-las como se fossem informações explícitas dos Evangelhos ou de Atos.
+
+A memória de João teve grande influência na espiritualidade, na teologia e na arte cristãs, mas a reconstrução de sua biografia deve considerar os limites das fontes disponíveis.`,
+verse:"Referências bíblicas para estudo: João 21:20–24; Apocalipse 1:9."
+},
+{
+kicker:"16. Lições para a vida cristã",
+title:"O que aprendemos com João?",
+body:`1. Responder ao chamado: João deixou o trabalho para seguir Jesus.
+2. Aceitar correção: os Evangelhos mostram que os discípulos precisavam aprender com o Mestre.
+3. Compreender o serviço: Jesus ensinou que a grandeza está ligada a servir.
+4. Permanecer no testemunho: João aparece entre os apóstolos da comunidade primitiva.
+5. Ler com responsabilidade: a tradição deve ser distinguida do que o texto bíblico afirma diretamente.
+
+Essas lições se baseiam nos episódios preservados no Novo Testamento e evitam atribuir ao apóstolo acontecimentos ou palavras que as Escrituras não registram.`,
+verse:"Leitura: Marcos 1:19–20; 10:35–45; Atos 1:13–14."
+},
+{
+kicker:"17. Cronologia e referências",
+title:"Percurso bíblico de João",
+body:`• Chamado junto com Tiago: Mateus 4:21–22; Marcos 1:19–20.
+• Incluído entre os Doze: Mateus 10:2–4; Lucas 6:13–16.
+• Presente na casa de Jairo: Marcos 5:37–43.
+• Testemunha da transfiguração: Marcos 9:2–8.
+• Ouve o ensino sobre serviço: Marcos 10:35–45.
+• Pergunta sobre o templo com outros discípulos: Marcos 13:3.
+• Reunido com os apóstolos em Jerusalém: Atos 1:13.
+• Atua com Pedro em Jerusalém: Atos 3–4.
+
+As identificações tradicionais do discípulo amado e a autoria dos escritos joaninos devem ser apresentadas com a devida distinção histórica.`,
+verse:"Fonte principal: Novo Testamento."
+},
+{
+kicker:"Encerramento",
+title:"Um apóstolo que acompanhou Jesus",
+body:`João, filho de Zebedeu, foi um dos doze apóstolos e acompanhou Jesus em momentos marcantes de seu ministério. Os Evangelhos preservam episódios em que ele testemunha sinais, ouve ensinamentos e é corrigido junto com os demais discípulos.
+
+A história de João também convida a estudar cuidadosamente as fontes: algumas informações são afirmadas diretamente no Novo Testamento, enquanto outras pertencem à tradição cristã e ao debate histórico sobre os escritos associados ao seu nome.
+
+Seu percurso bíblico aponta para a importância de seguir Jesus, aprender com suas palavras e compreender que a verdadeira grandeza no Reino está ligada ao serviço.`,
+verse:"“O Filho do Homem também não veio para ser servido, mas para servir.” — Marcos 10:45"
+}
+];
+
+let current = 0;
+const $ = id => document.getElementById(id);
+const book = $("book");
+function render(){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").textContent = p.body;
+  const quote = document.createElement("div");
+  quote.className = "verse";
+  quote.textContent = p.verse;
+  $("pageBody").appendChild(quote);
+  $("pageNumber").textContent = `${current+1} / ${pages.length}`;
+  $("status").textContent = `Página ${current+1} de ${pages.length}`;
+  $("progress").style.width = `${((current+1)/pages.length)*100}%`;
+  $("pageText").textContent = `${p.title}\n\n${p.body}\n\n${p.verse}`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length-1;
+}
+function go(step){
+  const next = current + step;
+  if(next < 0 || next >= pages.length) return;
+  current = next;
+  book.classList.remove("turn-next","turn-prev");
+  void book.offsetWidth;
+  book.classList.add(step > 0 ? "turn-next" : "turn-prev");
+  render();
+}
+$("prev").addEventListener("click",()=>go(-1));
+$("next").addEventListener("click",()=>go(1));
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não está disponível neste navegador.");return;}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance($("pageText").textContent);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.94;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window) speechSynthesis.cancel();});
+let startX = 0;
+book.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX;},{passive:true});
+book.addEventListener("touchend",e=>{
+  const diff=e.changedTouches[0].screenX-startX;
+  if(Math.abs(diff)>55) go(diff<0?1:-1);
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+render();
+</script>
+</body>
+</html>

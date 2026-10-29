@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Maria Madalena: vida, testemunho e importância na história do cristianismo, à luz dos Evangelhos.">
+<title>Flipbook — História do Cristianismo: Maria Madalena</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font:.8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo — Capítulo 3</h1>
+<p class="subtitle">Maria Madalena · Discípula de Jesus e testemunha da ressurreição</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+{
+kicker:"História do Cristianismo • Capítulo 3",
+title:"Maria Madalena",
+body:`Discípula de Jesus, mulher transformada pela graça e testemunha da ressurreição.
+
+Maria Madalena ocupa lugar de destaque nos relatos dos Evangelhos. Ela acompanhou Jesus, serviu ao grupo de discípulos e esteve presente nos acontecimentos ligados à crucificação e ao sepultamento. Segundo o Evangelho de João, foi a primeira pessoa a quem o Cristo ressuscitado se revelou naquela manhã.
+
+Sua história é importante não por tradições imaginadas, mas pelo testemunho preservado nas Escrituras: Jesus a libertou, ela passou a segui-lo e anunciou aos discípulos que havia visto o Senhor.`,
+verse:"“Vi o Senhor!” — João 20:18"
+},
+{
+kicker:"1. Identificação e contexto",
+title:"Quem foi Maria Madalena?",
+body:`Maria era conhecida como “Madalena”, designação geralmente associada à cidade de Magdala, na região da Galileia. Os Evangelhos a distinguem de outras mulheres chamadas Maria.
+
+Lucas a inclui entre as mulheres que acompanhavam Jesus e contribuíam para o sustento do grupo com seus próprios recursos. Isso mostra que sua participação não foi apenas ocasional: ela integrou o círculo de pessoas que serviam ao ministério de Jesus.
+
+Os textos bíblicos não informam sua idade, estado civil ou profissão anterior. Quando esses dados não são fornecidos pelas Escrituras, não devem ser apresentados como fatos certos.`,
+verse:"Leitura principal: Lucas 8:1–3; Marcos 15:40–41."
+},
+{
+kicker:"2. Libertação e transformação",
+title:"Jesus a libertou",
+body:`Lucas registra que Maria, chamada Madalena, havia sido libertada de sete demônios. O texto não descreve os detalhes dessa condição, e por isso não é correto completar a narrativa com diagnósticos ou episódios que o Evangelho não relata.
+
+O ponto central é a ação libertadora de Jesus. A partir daí, Maria aparece entre as mulheres que acompanhavam o Mestre e o serviam. Sua vida passou a estar ligada à missão de Cristo.
+
+A Bíblia não identifica Maria Madalena como prostituta. Essa associação surgiu em tradições posteriores que a confundiram com outras mulheres dos Evangelhos. É importante distinguir o que o texto bíblico afirma daquilo que foi acrescentado ao longo da história.`,
+verse:"“Maria, chamada Madalena, da qual saíram sete demônios.” — Lucas 8:2"
+},
+{
+kicker:"3. Discípula e serva",
+title:"Uma mulher entre os seguidores de Jesus",
+body:`Jesus percorria cidades e aldeias anunciando o Reino de Deus, acompanhado pelos Doze e por algumas mulheres que haviam sido curadas e libertadas. Lucas cita Maria Madalena, Joana, Susana e muitas outras.
+
+O Evangelho afirma que elas serviam ao grupo com seus bens. Esse detalhe demonstra participação concreta no ministério, inclusive por meio de recursos e serviço. A narrativa não as apresenta como simples espectadoras.
+
+Maria Madalena é lembrada entre as discípulas que permaneceram ligadas a Jesus durante os momentos decisivos de seu ministério. Sua presença nos relatos finais revela fidelidade em meio à hostilidade e à dor.`,
+verse:"Leia Lucas 8:1–3."
+},
+{
+kicker:"4. A crucificação",
+title:"Perto da cruz",
+body:`Os Evangelhos Sinóticos mencionam Maria Madalena entre as mulheres que observaram a crucificação de Jesus. Enquanto muitos discípulos se dispersaram, essas mulheres permaneceram próximas, acompanhando o sofrimento do Mestre.
+
+Marcos e Mateus a identificam entre as mulheres que haviam seguido Jesus desde a Galileia e o servido. João também a coloca junto à cruz, ao lado de outras pessoas próximas de Jesus.
+
+Os relatos variam em alguns detalhes e na lista de pessoas presentes, mas concordam que Maria Madalena esteve associada aos acontecimentos da crucificação. Sua presença dá continuidade à história de discipulado que começou antes da última semana de Jesus.`,
+verse:"Leitura: Mateus 27:55–56; Marcos 15:40–41; João 19:25."
+},
+{
+kicker:"5. O sepultamento",
+title:"Ela viu onde Jesus foi colocado",
+body:`Depois da morte de Jesus, José de Arimateia pediu o corpo e providenciou o sepultamento. Os Evangelhos relatam que Maria Madalena estava entre as mulheres que observaram o local onde Jesus foi colocado.
+
+Essa informação prepara a narrativa da manhã da ressurreição: Maria sabia onde o corpo havia sido depositado e voltou ao túmulo. A sequência dos acontecimentos é importante para compreender o testemunho que ela daria depois.
+
+A Bíblia não descreve Maria como alguém que compreendeu imediatamente tudo o que estava acontecendo. Ela enfrentou a dor da morte de Jesus e foi ao sepulcro, como mostram os relatos evangélicos.`,
+verse:"Leia Mateus 27:57–61; Marcos 15:42–47; Lucas 23:50–56."
+},
+{
+kicker:"6. A manhã da ressurreição",
+title:"O túmulo vazio",
+body:`No primeiro dia da semana, Maria Madalena foi ao sepulcro. João relata que ela chegou ainda escuro e viu que a pedra havia sido retirada. Depois de avisar Simão Pedro e o outro discípulo, permaneceu junto ao túmulo chorando.
+
+Os Evangelhos apresentam detalhes diferentes sobre a visita das mulheres e a presença de mensageiros celestiais. O núcleo do anúncio é comum: Jesus não permanecia entre os mortos; ele havia ressuscitado, conforme sua palavra.
+
+A tristeza de Maria diante do túmulo vazio mostra que, naquele momento, ela ainda não compreendia plenamente o que havia acontecido. A revelação do Ressuscitado transformaria seu lamento em anúncio.`,
+verse:"Leitura: João 20:1–10; Mateus 28:1–8; Marcos 16:1–8; Lucas 24:1–12."
+},
+{
+kicker:"7. O encontro com Jesus",
+title:"“Maria!”",
+body:`João relata que Maria chorava junto ao sepulcro e pensou que estivesse falando com o jardineiro. Ela perguntou onde o corpo de Jesus havia sido colocado. Então Jesus a chamou pelo nome: “Maria!”
+
+Ao reconhecer a voz do Mestre, ela respondeu em hebraico: “Rabôni!”, que significa Mestre. O encontro pessoal converteu sua tristeza em reconhecimento e esperança. Jesus lhe confiou uma mensagem para os discípulos.
+
+O relato destaca a iniciativa de Jesus: ele se dá a conhecer e chama Maria pelo nome. Ela não encontrou o Senhor por ter compreendido sozinha o mistério, mas porque o Ressuscitado se revelou a ela.`,
+verse:"“Disse-lhe Jesus: Maria! Ela, voltando-se, disse-lhe: Rabôni.” — João 20:16"
+},
+{
+kicker:"8. A primeira mensageira",
+title:"“Eu vi o Senhor”",
+body:`Depois do encontro, Jesus orientou Maria a ir aos irmãos e anunciar o que havia acontecido. João afirma que ela foi e comunicou aos discípulos: “Vi o Senhor”, relatando também o que ele lhe dissera.
+
+Por isso, Maria Madalena é frequentemente lembrada como a primeira testemunha do Ressuscitado no relato de João. A missão que recebeu foi clara: levar a notícia aos discípulos.
+
+Seu testemunho ocupa lugar significativo na história cristã. A fé na ressurreição não é apresentada como uma ideia abstrata, mas como o anúncio de que Jesus, crucificado e sepultado, está vivo.`,
+verse:"Leia João 20:17–18."
+},
+{
+kicker:"9. Maria Madalena e as tradições",
+title:"Separando Bíblia e tradição",
+body:`Ao longo dos séculos, Maria Madalena recebeu interpretações e representações variadas na arte, na pregação e na literatura cristã. Algumas tradições a identificaram com a mulher pecadora de Lucas 7 ou com Maria de Betânia, irmã de Marta e Lázaro.
+
+Entretanto, os Evangelhos não afirmam explicitamente que essas mulheres sejam a mesma pessoa. Maria Madalena é apresentada pelo nome e associada à libertação de sete demônios, ao discipulado, à crucificação, ao sepultamento e ao anúncio da ressurreição.
+
+Uma leitura responsável distingue os dados bíblicos das interpretações posteriores. Isso não diminui sua importância; pelo contrário, permite reconhecer com clareza o testemunho que os textos realmente preservam.`,
+verse:"Compare Lucas 7:36–50; João 11:1–2; Lucas 8:1–3; João 20:1–18."
+},
+{
+kicker:"10. Importância na história cristã",
+title:"Uma testemunha fundamental",
+body:`A importância de Maria Madalena não depende de títulos que os Evangelhos não lhe atribuem. Ela é lembrada porque seguiu Jesus, esteve presente em momentos decisivos e recebeu a incumbência de anunciar aos discípulos que ele havia ressuscitado.
+
+Seu testemunho mostra que, nos relatos da ressurreição, mulheres aparecem como participantes centrais da descoberta do túmulo vazio e da transmissão da notícia. Esse fato deve ser reconhecido sem exageros nem apagamentos.
+
+Na tradição cristã, Maria Madalena tornou-se símbolo de fidelidade, transformação e anúncio. O fundamento mais seguro para compreender seu legado permanece o testemunho dos Evangelhos.`,
+verse:"“Vai para meus irmãos e dize-lhes...” — João 20:17"
+},
+{
+kicker:"11. Lições para a vida cristã",
+title:"O que aprendemos com Maria?",
+body:`1. A transformação: a libertação recebida de Jesus marcou uma nova direção para sua vida.
+2. O discipulado: ela acompanhou o Mestre e participou do serviço ao ministério.
+3. A perseverança: permaneceu ligada aos acontecimentos da cruz e do sepultamento.
+4. A esperança: foi ao túmulo em meio à dor e encontrou o anúncio da ressurreição.
+5. O testemunho: depois de encontrar Jesus, levou a mensagem aos discípulos.
+
+Essas lições não exigem que se inventem detalhes biográficos. Elas surgem dos episódios registrados nas Escrituras e apontam para a obra de Cristo, que transforma vidas e envia seus seguidores a testemunhar.`,
+verse:"“Sereis minhas testemunhas.” — Atos 1:8"
+},
+{
+kicker:"12. Cronologia e referências",
+title:"Percurso bíblico de Maria Madalena",
+body:`• Libertada e passa a acompanhar Jesus: Lucas 8:1–3.
+• Presente na crucificação: Mateus 27:55–56; Marcos 15:40–41; João 19:25.
+• Observa o sepultamento: Mateus 27:61; Marcos 15:47.
+• Vai ao túmulo na manhã do primeiro dia da semana: João 20:1–10.
+• Encontra o Ressuscitado e anuncia aos discípulos: João 20:11–18.
+• Outras referências à visita das mulheres ao sepulcro: Mateus 28:1–10; Marcos 16:1–8; Lucas 24:1–12.
+
+Os Evangelhos não informam com precisão as datas de nascimento e morte de Maria Madalena, nem relatam detalhadamente sua vida após os acontecimentos da ressurreição. Informações além desses limites devem ser identificadas como tradição, não como afirmações explícitas do texto bíblico.`,
+verse:"Fonte principal: os quatro Evangelhos."
+},
+{
+kicker:"Encerramento",
+title:"Uma vida transformada, uma notícia anunciada",
+body:`Maria Madalena aparece nos Evangelhos como uma discípula que foi libertada por Jesus, acompanhou seu ministério e permaneceu presente nos acontecimentos da cruz e do sepultamento. Na manhã da ressurreição, sua dor deu lugar ao encontro com o Senhor vivo.
+
+A mensagem que ela levou aos discípulos continua sendo o centro da fé cristã: Jesus Cristo ressuscitou. O valor de seu testemunho está nessa missão recebida e cumprida, registrada nas Escrituras.
+
+Ao estudar sua história, mantenhamos juntos a reverência bíblica e o cuidado histórico: afirmar o que os Evangelhos dizem, reconhecer o que não dizem e colocar Jesus Cristo no centro da narrativa.`,
+verse:"“Vi o Senhor!” — João 20:18"
+}
+];
+
+let current = 0;
+const $ = id => document.getElementById(id);
+const book = $("book");
+function render(){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").textContent = p.body;
+  const quote = document.createElement("div");
+  quote.className = "verse";
+  quote.textContent = p.verse;
+  $("pageBody").appendChild(quote);
+  $("pageNumber").textContent = `${current+1} / ${pages.length}`;
+  $("status").textContent = `Página ${current+1} de ${pages.length}`;
+  $("progress").style.width = `${((current+1)/pages.length)*100}%`;
+  $("pageText").textContent = `${p.title}\n\n${p.body}\n\n${p.verse}`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length-1;
+}
+function go(step){
+  const next = current + step;
+  if(next < 0 || next >= pages.length) return;
+  current = next;
+  book.classList.remove("turn-next","turn-prev");
+  void book.offsetWidth;
+  book.classList.add(step > 0 ? "turn-next" : "turn-prev");
+  render();
+}
+$("prev").addEventListener("click",()=>go(-1));
+$("next").addEventListener("click",()=>go(1));
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não está disponível neste navegador.");return;}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance($("pageText").textContent);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.94;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window) speechSynthesis.cancel();});
+let startX = 0;
+book.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX;},{passive:true});
+book.addEventListener("touchend",e=>{
+  const diff=e.changedTouches[0].screenX-startX;
+  if(Math.abs(diff)>55) go(diff<0?1:-1);
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+render();
+</script>
+</body>
+</html>
