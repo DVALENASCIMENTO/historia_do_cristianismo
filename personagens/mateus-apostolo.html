@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mateus, apóstolo: chamado, discipulado, testemunho e lugar na história do cristianismo, à luz do Novo Testamento.">
+<title>Flipbook — História do Cristianismo: Mateus, apóstolo</title>
+<style>
+:root{--ink:#29251f;--gold:#b58a42;--paper:#fffdf7;--bg:#e9e3d8;--muted:#6b5b46}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f5f1e8,#ddd4c5);font-family:Georgia,"Times New Roman",serif;color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 14px 12px}
+h1{font-size:clamp(1.35rem,4vw,2rem);margin:0 0 7px;color:#352a1d}
+.subtitle{font-size:.98rem;color:var(--muted);margin:0 auto;max-width:780px;line-height:1.5}
+main{max-width:1000px;margin:0 auto;padding:12px 14px 32px}
+.stage{display:flex;justify-content:center;align-items:center;min-height:54vh;padding:8px 0 18px;perspective:1600px}
+.book{position:relative;width:min(94vw,760px);min-height:460px;background:var(--paper);border-radius:4px 12px 12px 4px;box-shadow:0 18px 45px #46331f35,0 2px 6px #46331f20;overflow:hidden;transform-origin:left center;padding:clamp(24px,5vw,54px)}
+.book:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(90deg,#d4c4a9,#fff8e9)}
+.book.turn-next{animation:turnNext .32s ease}.book.turn-prev{animation:turnPrev .32s ease}
+@keyframes turnNext{0%{transform:rotateY(0)}45%{transform:rotateY(-5deg) translateX(-3px)}100%{transform:rotateY(0)}}
+@keyframes turnPrev{0%{transform:rotateY(0)}45%{transform:rotateY(5deg) translateX(3px)}100%{transform:rotateY(0)}}
+.page-kicker{font:700 .76rem system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#967039;margin:0 0 12px}
+.page-title{font-size:clamp(1.45rem,4vw,2.1rem);line-height:1.18;color:#352a1d;margin:0 0 18px}
+.page-body{font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.8;white-space:pre-line}
+.page-body p{margin:0 0 14px}
+.verse{margin:22px 0;padding:15px 18px;border-left:3px solid var(--gold);background:#f5efe3;color:#51412c;font-style:italic;line-height:1.65}
+.verse strong{display:block;font:700 .82rem system-ui,sans-serif;font-style:normal;margin-top:8px;color:#80602c}
+.page-number{position:absolute;bottom:15px;right:24px;color:#9b8b73;font:.8rem system-ui,sans-serif}
+.progress{height:5px;background:#d5c9b7;border-radius:9px;overflow:hidden;max-width:760px;margin:0 auto 15px}
+.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+.status{text-align:center;font:500 .95rem system-ui,sans-serif;color:#5b5144;margin:8px 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:8px 0 14px}
+button{border:1px solid #b8a17d;background:#fffdf7;color:#352a1d;border-radius:999px;padding:10px 15px;font-size:.95rem;cursor:pointer;box-shadow:0 2px 5px #46331f12}
+button.primary{background:#6f4e27;color:white;border-color:#6f4e27}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid #d3a64d;outline-offset:2px}
+.reader{max-width:760px;margin:18px auto 0;padding:15px 17px;background:#fffdf7c9;border:1px solid #d6c6ad;border-radius:12px;font-family:system-ui,sans-serif}
+.reader h2{font-size:1.05rem;margin:0 0 8px}.reader p{font-size:.94rem;line-height:1.6;margin:0;white-space:pre-line}
+.hint{text-align:center;font:.82rem system-ui,sans-serif;color:#756954;margin-top:10px}
+@media(max-width:560px){.book{min-height:540px;padding:28px 23px 45px}.page-body{line-height:1.68}.controls button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.book,.progress span{transition:none}.book.turn-next,.book.turn-prev{animation:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>História do Cristianismo</h1>
+<p class="subtitle">Mateus, apóstolo · O cobrador de impostos chamado por Jesus</p>
+</header>
+<main>
+<div class="stage"><article class="book" id="book" aria-live="polite">
+<p class="page-kicker" id="kicker"></p><h2 class="page-title" id="pageTitle"></h2><div class="page-body" id="pageBody"></div><div class="page-number" id="pageNumber"></div>
+</article></div>
+<div class="progress" aria-label="Progresso de leitura"><span id="progress"></span></div>
+<div class="status" id="status" aria-live="polite">Página 1</div>
+<div class="controls">
+<button id="prev" aria-label="Página anterior">← Anterior</button>
+<button id="next" class="primary" aria-label="Próxima página">Próxima →</button>
+<button id="read">🔊 Ler esta página</button>
+<button id="stop">⏹ Parar voz</button>
+</div>
+<section class="reader"><h2>Leitor de voz e texto da página</h2><p id="pageText"></p></section>
+<p class="hint">Deslize para a esquerda ou direita no celular para virar as páginas. A leitura em voz alta usa a voz disponível no navegador ou aparelho.</p>
+</main>
+<script>
+const pages = [
+{
+ kicker:"História do Cristianismo",
+ title:"Mateus, apóstolo",
+ body:"Mateus foi um dos doze apóstolos escolhidos por Jesus. Antes de segui-lo, trabalhava como cobrador de impostos, atividade que despertava desconfiança e rejeição entre muitos judeus.\n\nJesus o encontrou sentado na coletoria e o chamou com uma ordem direta: “Segue-me”. Mateus se levantou e passou a acompanhá-lo. A seguir, uma refeição com publicanos e pecadores tornou-se ocasião para Jesus ensinar sobre misericórdia e arrependimento.\n\nA tradição cristã associa Mateus ao Evangelho que leva seu nome. O livro, contudo, não apresenta uma assinatura explícita de autoria.",
+ verse:"“Segue-me. E ele, levantando-se, o seguiu.” — Mateus 9:9"
+},
+{
+ kicker:"1. Identificação",
+ title:"Quem foi Mateus?",
+ body:"Mateus aparece nas listas dos doze apóstolos. Em Mateus 10:3, é identificado como “Mateus, o publicano”. Marcos e Lucas narram o chamado de um cobrador de impostos chamado Levi, filho de Alfeu. A tradição cristã identifica Levi e Mateus como a mesma pessoa.\n\nOs Evangelhos não informam sua idade, data de nascimento ou detalhes completos de sua família. O conhecimento bíblico sobre ele concentra-se em seu chamado, sua presença entre os doze e a missão dos discípulos.",
+ verse:"Leitura: Mateus 10:2–4; Marcos 2:13–17; Lucas 5:27–32."
+},
+{
+ kicker:"2. Sua profissão",
+ title:"Mateus, o publicano",
+ body:"Antes de seguir Jesus, Mateus trabalhava na coletoria de impostos. Os publicanos eram associados à arrecadação de tributos e frequentemente desprezados pela população, tanto por sua ligação com a administração romana quanto por abusos que podiam ocorrer nesse sistema.\n\nOs textos bíblicos não descrevem detalhadamente a conduta pessoal de Mateus nem afirmam que ele praticasse extorsão. O destaque do relato é que Jesus chama alguém socialmente rejeitado para fazer parte de seu grupo.",
+ verse:"Leitura: Mateus 9:9; Marcos 2:14; Lucas 5:27."
+},
+{
+ kicker:"3. O chamado",
+ title:"“Segue-me”",
+ body:"Jesus viu Mateus sentado na coletoria e lhe disse: “Segue-me”. O Evangelho registra que ele se levantou e seguiu Jesus.\n\nA narrativa é breve. Não descreve uma longa conversa nem todos os sentimentos de Mateus. O centro do episódio é sua resposta: ele deixa a coletoria e passa a acompanhar o Mestre.\n\nO chamado demonstra que Jesus alcança pessoas de diferentes histórias e condições. O discipulado exige uma nova direção e disposição para caminhar com Cristo.",
+ verse:"Leitura: Mateus 9:9; Marcos 2:13–14; Lucas 5:27–28."
+},
+{
+ kicker:"4. A refeição",
+ title:"Jesus à mesa com pecadores",
+ body:"Depois do chamado, Jesus participa de uma refeição com muitos publicanos e pecadores. Os fariseus questionam por que o Mestre come com pessoas consideradas impuras ou moralmente reprováveis.\n\nJesus responde usando a imagem do médico: os sãos não precisam de médico, mas os doentes. Sua presença entre aquelas pessoas expressa a missão de buscar os que necessitam de transformação.\n\nA passagem não ensina que o pecado seja irrelevante. Mostra que a misericórdia de Deus se aproxima dos que precisam de arrependimento.",
+ verse:"“Não necessitam de médico os sãos, mas sim os doentes.” — Mateus 9:12"
+},
+{
+ kicker:"5. Misericórdia",
+ title:"O propósito da missão",
+ body:"Jesus declara que veio chamar pecadores ao arrependimento e cita a Escritura: “Misericórdia quero, e não sacrifício”. Com isso, confronta uma religiosidade que valoriza práticas externas, mas negligencia a compaixão.\n\nA refeição com publicanos e pecadores revela o coração da missão de Cristo. Ele se aproxima das pessoas para chamá-las a uma vida transformada.\n\nA própria história de Mateus ilustra essa mensagem: um homem conhecido por sua profissão é chamado para seguir Jesus e participar de sua missão.",
+ verse:"Leitura: Mateus 9:10–13; Oséias 6:6."
+},
+{
+ kicker:"6. Entre os doze",
+ title:"Mateus no grupo apostólico",
+ body:"Mateus é incluído nas listas dos doze apóstolos. Jesus escolheu esse grupo para estar com ele, receber seus ensinamentos e ser enviado à missão.\n\nEm Mateus 10, o apóstolo aparece identificado como publicano. Marcos e Lucas também apresentam listas dos doze, com pequenas diferenças na ordem dos nomes.\n\nA participação de Mateus mostra que o chamado recebido na coletoria não foi um episódio isolado: ele passou a integrar o círculo dos discípulos mais próximos de Jesus.",
+ verse:"Leitura: Mateus 10:1–4; Marcos 3:13–19; Lucas 6:12–16."
+},
+{
+ kicker:"7. Enviado por Jesus",
+ title:"A missão dos discípulos",
+ body:"Jesus concedeu autoridade aos doze e os enviou a anunciar que o Reino dos Céus estava próximo. Mateus 10 registra orientações sobre a missão, a dependência de Deus, o serviço e a coragem diante das dificuldades.\n\nMateus fazia parte desse grupo enviado. O texto apresenta a missão como responsabilidade coletiva dos apóstolos, sem atribuir a Mateus uma tarefa exclusiva.",
+ verse:"Leitura: Mateus 10:5–15."
+},
+{
+ kicker:"8. O Evangelho",
+ title:"O Reino dos Céus e as Escrituras",
+ body:"O Evangelho segundo Mateus reúne narrativas e ensinamentos sobre Jesus. Entre seus temas centrais estão o Reino dos Céus, o cumprimento das Escrituras, a justiça, o discipulado e a autoridade de Cristo.\n\nO Sermão do Monte, as parábolas do Reino e o ensino sobre a missão dos discípulos são partes importantes desse livro. Mateus apresenta Jesus em continuidade com a história e as promessas de Israel.",
+ verse:"Leitura: Mateus 5–7; 13; 18; 24–25."
+},
+{
+ kicker:"9. Autoria",
+ title:"Mateus e o primeiro Evangelho",
+ body:"Desde os primeiros séculos, a tradição da Igreja atribui ao apóstolo Mateus o Evangelho que leva seu nome. Essa associação exerceu grande influência na história da interpretação cristã.\n\nÉ importante distinguir tradição e declaração textual: o próprio Evangelho não traz uma assinatura explícita de seu autor. A composição e as fontes do livro são discutidas por estudiosos, e existem diferentes posições acadêmicas.\n\nPortanto, pode-se afirmar que a tradição cristã atribui o Evangelho a Mateus, sem apresentar essa atribuição como uma declaração direta do próprio texto.",
+ verse:"Leitura: Evangelho segundo Mateus."
+},
+{
+ kicker:"10. A cruz e a ressurreição",
+ title:"O centro da mensagem cristã",
+ body:"O Evangelho de Mateus narra a entrada de Jesus em Jerusalém, a última ceia, sua prisão, julgamento, crucificação e ressurreição. Esses acontecimentos formam o centro da proclamação cristã.\n\nO texto não descreve individualmente as ações de Mateus durante cada momento da paixão. Por isso, não devemos acrescentar falas ou cenas que a Escritura não registra.\n\nO relato termina com o anúncio da ressurreição e o encontro de Jesus com os discípulos na Galileia.",
+ verse:"Leitura: Mateus 26–28."
+},
+{
+ kicker:"11. A grande comissão",
+ title:"Fazer discípulos de todas as nações",
+ body:"No encerramento do Evangelho, Jesus encontra os discípulos na Galileia e lhes confia a missão de fazer discípulos de todas as nações, batizando e ensinando a guardar seus mandamentos.\n\nA comissão é dada aos discípulos reunidos. Mateus não recebe uma tarefa exclusiva nesse trecho; a missão é apresentada como responsabilidade da comunidade enviada por Cristo.\n\nJesus promete sua presença contínua com os discípulos até a consumação dos séculos.",
+ verse:"“E eis que eu estou convosco todos os dias.” — Mateus 28:20"
+},
+{
+ kicker:"12. Depois dos Evangelhos",
+ title:"O que a Bíblia não informa",
+ body:"O Novo Testamento não apresenta uma biografia detalhada de Mateus depois da grande comissão. Não informa com certeza para onde ele viajou, onde morreu ou como terminou sua vida.\n\nTradições cristãs posteriores relacionam Mateus a diferentes regiões e narram aspectos de sua atividade missionária e de sua morte. Essas tradições variam e não possuem o mesmo grau de confirmação histórica que os episódios registrados nos Evangelhos.\n\nÉ importante apresentar essas narrativas como tradições posteriores, e não como fatos explicitamente afirmados pela Bíblia.",
+ verse:"Leitura: Mateus 28:16–20."
+},
+{
+ kicker:"13. A memória da Igreja",
+ title:"Mateus na história cristã",
+ body:"A Igreja preservou a memória de Mateus como apóstolo e evangelista. Seu nome ficou associado ao primeiro livro do Novo Testamento na ordem tradicional do cânon.\n\nAo longo dos séculos, o Evangelho de Mateus influenciou a pregação, a catequese, a liturgia, a arte e o ensino cristão. O nascimento de Jesus, o Sermão do Monte e a grande comissão são passagens amplamente conhecidas.",
+ verse:"Leitura: Mateus 1–2; 5–7; 28:18–20."
+},
+{
+ kicker:"14. Lições do discipulado",
+ title:"O que aprendemos com Mateus?",
+ body:"A história de Mateus ensina que o chamado de Jesus pode alcançar pessoas rejeitadas pela sociedade. Seu passado não impediu que respondesse ao convite do Mestre.\n\nTambém aprendemos que seguir Jesus envolve mudança de direção. Mateus se levantou da coletoria e passou a caminhar com Cristo.\n\nPor fim, a refeição com publicanos recorda que a misericórdia deve marcar a missão cristã. A comunidade de fé é chamada a anunciar arrependimento e restauração, sem desprezar as pessoas.",
+ verse:"“Misericórdia quero, e não sacrifício.” — Mateus 9:13"
+},
+{
+ kicker:"Síntese e referências",
+ title:"Resumo da vida de Mateus",
+ body:"Mateus é apresentado como um dos doze apóstolos e como publicano antes de seguir Jesus. Seu chamado aparece em Mateus 9:9 e nos relatos paralelos sobre Levi em Marcos 2:13–17 e Lucas 5:27–32.\n\nEle integra as listas apostólicas e participa do grupo enviado por Jesus. A tradição cristã antiga associa seu nome ao Evangelho de Mateus, embora o livro não declare explicitamente sua autoria.\n\nReferências principais: Mateus 9:9–13; 10:1–4; Marcos 2:13–17; 3:13–19; Lucas 5:27–32; 6:12–16; Mateus 28:16–20.",
+ verse:"“Segue-me.” — Mateus 9:9"
+}
+];
+
+let current = 0;
+const $ = id => document.getElementById(id);
+const book = $("book");
+function render(){
+  const p = pages[current];
+  $("kicker").textContent = p.kicker;
+  $("pageTitle").textContent = p.title;
+  $("pageBody").textContent = p.body;
+  const quote = document.createElement("div");
+  quote.className = "verse";
+  quote.textContent = p.verse;
+  $("pageBody").appendChild(quote);
+  $("pageNumber").textContent = `${current+1} / ${pages.length}`;
+  $("status").textContent = `Página ${current+1} de ${pages.length}`;
+  $("progress").style.width = `${((current+1)/pages.length)*100}%`;
+  $("pageText").textContent = `${p.title}\n\n${p.body}\n\n${p.verse}`;
+  $("prev").disabled = current === 0;
+  $("next").disabled = current === pages.length-1;
+}
+function go(step){
+  const next = current + step;
+  if(next < 0 || next >= pages.length) return;
+  current = next;
+  book.classList.remove("turn-next","turn-prev");
+  void book.offsetWidth;
+  book.classList.add(step > 0 ? "turn-next" : "turn-prev");
+  render();
+}
+$("prev").addEventListener("click",()=>go(-1));
+$("next").addEventListener("click",()=>go(1));
+$("read").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("A leitura em voz alta não está disponível neste navegador.");return;}
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance($("pageText").textContent);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.94;
+  speechSynthesis.speak(utterance);
+});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window) speechSynthesis.cancel();});
+let startX = 0;
+book.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX;},{passive:true});
+book.addEventListener("touchend",e=>{
+  const diff=e.changedTouches[0].screenX-startX;
+  if(Math.abs(diff)>55) go(diff<0?1:-1);
+},{passive:true});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+render();
+</script>
+</body>
+</html>
